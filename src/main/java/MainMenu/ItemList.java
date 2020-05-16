@@ -2,6 +2,9 @@ package MainMenu;
 
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+
 public class ItemList {
    private ArrayList<Item> items = new ArrayList<Item>();
 

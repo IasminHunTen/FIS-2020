@@ -4,9 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 public class DataMeneger {
    private ObjectMapper omap;
@@ -14,6 +17,7 @@ public class DataMeneger {
    public DataMeneger() {
 	super();
 	this.omap=new ObjectMapper();
+    
 }
 
 public void writeItems(ItemList list) {
@@ -33,13 +37,20 @@ public void writeItems(ItemList list) {
 
  public ItemList readItems() {
 	 ItemList il = null;
-	 try {
+	 File f=new File("database.json");
+	 if(!f.exists() || f.length()==0)
+		 il=new ItemList();
+	 else {
+	  try {
 	  il= omap.readerFor(ItemList.class).readValue(new File("database.json"));
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+    }
 	 return il;
- }
+}
+ 
+
  
 }

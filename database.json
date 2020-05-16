@@ -1,0 +1,10 @@
+{
+  "items" : [ {
+    "type" : "movie",
+    "title" : "aa",
+    "gen" : "bb",
+    "year" : 2000,
+    "mainPlot" : "cc",
+    "actors" : [ "dd" ]
+  } ]
+}
