@@ -1,0 +1,6 @@
+# Fis-2020
+out/
+.idea/
+*.iml
+/target/
+
