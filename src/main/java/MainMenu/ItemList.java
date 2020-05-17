@@ -23,4 +23,10 @@ public ArrayList<Item> getItems() {
 public void setItems(ArrayList<Item> items) {
 	this.items = items;
 }  
+
+public void addItem (Item it) {
+   if(!items.contains(it))	
+	   items.add(it);
+}
+
 }

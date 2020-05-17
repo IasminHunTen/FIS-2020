@@ -31,8 +31,10 @@ public class AddMovie extends JFrame implements ActionListener {
 	private JButton btnNewButton; 
 	private JButton btnNewButton_1;
 	private JButton btnAddActor;
-	private ArrayList<Item> list = new ArrayList<Item>();
-    
+	private JButton btnClean;
+	private ItemList list;
+	private DataMeneger dm;
+    private ArrayList<String> act=new ArrayList<String>();
 	/**
 	 * Launch the application.
 	 */
@@ -40,6 +42,7 @@ public class AddMovie extends JFrame implements ActionListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
 					AddMovie frame = new AddMovie();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -47,12 +50,15 @@ public class AddMovie extends JFrame implements ActionListener {
 				}
 			}
 		});
+		
 	}
 
 	/**
 	 * Create the frame.
 	 */
 	public AddMovie() {
+		dm=new DataMeneger();
+		list=dm.readItems();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -115,7 +121,7 @@ public class AddMovie extends JFrame implements ActionListener {
 		lblActors.setBounds(22, 174, 69, 14);
 		contentPane.add(lblActors);
 		
-		JButton btnAddActor = new JButton("add actor");
+		btnAddActor = new JButton("add actor");
 		btnAddActor.addActionListener(this);
 		btnAddActor.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnAddActor.setBounds(115, 172, 113, 23);
@@ -145,21 +151,34 @@ public class AddMovie extends JFrame implements ActionListener {
 		lblItemFactory.setFont(new Font("Tahoma", Font.BOLD, 17));
 		lblItemFactory.setBounds(92, 0, 243, 25);
 		contentPane.add(lblItemFactory);
+		
+	    btnClean = new JButton("Clean");
+	    btnClean.addActionListener(this);
+		btnClean.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnClean.setBounds(313, 133, 89, 23);
+		contentPane.add(btnClean);
+		
+	
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		 ArrayList<String> act=new ArrayList<String>();
+		 
 		 ArrayList<Integer> sez=new ArrayList<Integer>();
 		 int selected,sez_cnt,sez_i;
+		 String aux;
 		 Item nou;
-		 if(e.getSource()==btnAddActor)
-			 act.add(JOptionPane.showInputDialog(null,"Add new actor"));
+		 if(e.getSource()==btnAddActor) {
+			 aux=JOptionPane.showInputDialog(null,"Add new actor");
+			 act.add(aux);
+		 }
 		 if(e.getSource()==btnNewButton) {
 		 if(chckbxNewCheckBox.isSelected()) {
 			 nou=new Series();
-			 sez_cnt=Integer.parseInt(JOptionPane.showInputDialog(null, "How many seasons has this series ?"));
+			 aux=JOptionPane.showInputDialog(null,"How many seasons has this series ?");
+			 sez_cnt=Integer.parseInt(aux);
 			 for(int i=0;i<sez_cnt;i++) {
-				 sez_i=Integer.parseInt(JOptionPane.showInputDialog(null, "How many episodes has season "+i+"?"));
+				 aux=JOptionPane.showInputDialog(null,"How many episodes has season "+(i+1)+"?");
+				 sez_i =Integer.parseInt(aux);
 				 sez.add(sez_i);
 			 }
 			 ((Series)nou).setSeasons(sez);
@@ -168,21 +187,24 @@ public class AddMovie extends JFrame implements ActionListener {
 	      nou.setTitle(textField.getText());
 	      nou.setGen(textField_1.getText());
 	      nou.setMainPlot(textField_2.getText());
-	      nou.setYear(Integer.parseInt(textField_3.getText()));
+	      int an=Integer.parseInt(textField_3.getText());
+	      nou.setYear(an);
 	      nou.setActors(act);
-	      list.add(nou);	 
+	      list.addItem(nou);	 
+		 }
+		 if(e.getSource()==btnClean) {
+			 textField.setText("");
+			 textField_1.setText("");
+			 textField_2.setText("");
+			 textField_3.setText("");
+			 act.clear();
+			 sez.clear();
+		 }
+		 if(e.getSource()==btnNewButton_1) {
+			 dm.writeItems(list);
 		 }
 		
 	}
-
-	public ArrayList<Item> getList() {
-		return list;
-	}
-
-	public void setList(ArrayList<Item> list) {
-		this.list = list;
-	}
-	
 }
 
 
