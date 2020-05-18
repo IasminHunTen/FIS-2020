@@ -20,7 +20,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import java.awt.Color;
 
-public class AddMovie extends JFrame implements ActionListener {
+public class AddItem extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -43,7 +43,7 @@ public class AddMovie extends JFrame implements ActionListener {
 			public void run() {
 				try {
 					
-					AddMovie frame = new AddMovie();
+					AddItem frame = new AddItem();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -56,7 +56,7 @@ public class AddMovie extends JFrame implements ActionListener {
 	/**
 	 * Create the frame.
 	 */
-	public AddMovie() {
+	public AddItem() {
 		dm=new DataMeneger();
 		list=dm.readItems();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -200,6 +200,7 @@ public class AddMovie extends JFrame implements ActionListener {
 			 act.clear();
 			 sez.clear();
 		 }
+		 
 		 if(e.getSource()==btnNewButton_1) {
 			 dm.writeItems(list);
 		 }

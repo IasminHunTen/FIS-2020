@@ -2,6 +2,8 @@ package MainMenu;
 
 import java.util.ArrayList;
 
+
+
 public class Series extends Item {
      private ArrayList<Integer> seasons=new ArrayList<Integer>();
 

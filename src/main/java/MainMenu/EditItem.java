@@ -46,6 +46,7 @@ public class EditItem extends JFrame implements ActionListener {
 	private DataMeneger dm; 
 	private Item it;
 	private int idx;
+	private static EditItem frame;
 	/**
 	 * Launch the application.
 	 */
@@ -53,7 +54,7 @@ public class EditItem extends JFrame implements ActionListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EditItem frame = new EditItem();
+				    frame = new EditItem();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -220,8 +221,10 @@ public class EditItem extends JFrame implements ActionListener {
 		    for(int i=0;i<s.getSeasons().size();i++)
 		      choice_1.add(String.valueOf(s.getSeasons().get(i)));
 		}
+		frame.setVisible(true);
 	}
 	
+
 	
 	public void actionPerformed(ActionEvent e) {
 		String aux;
@@ -243,13 +246,17 @@ public class EditItem extends JFrame implements ActionListener {
 			if(!aux.equals("")) {
 			act=it.getActors();
 			act.add(aux);
+			choice.add(aux);
 			it.setActors(act);
+			frame.setVisible(true);
 			}
 		}
 		
 		if(e.getSource()==btnRemove) {
 			act=it.getActors();
 			act.remove(choice.getSelectedIndex());
+			choice.remove(choice.getSelectedIndex());
+			frame.setVisible(true);
 			it.setActors(act);
 		}
 		
@@ -262,13 +269,17 @@ public class EditItem extends JFrame implements ActionListener {
 				if(!aux.equals("")) {
 				sez.add(Integer.parseInt(aux));
 				s.setSeasons(sez);
+				choice_1.add(aux);
+				frame.setVisible(true);
 				}
 			}
 			
 			if(e.getSource()==button_3) {
 				sez=s.getSeasons();
+				choice.remove(choice_1.getSelectedIndex());
 				sez.remove(choice_1.getSelectedIndex());
 				s.setSeasons(sez);
+				frame.setVisible(true);
 			}
 		}
 		
