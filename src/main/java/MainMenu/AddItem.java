@@ -34,6 +34,7 @@ public class AddItem extends JFrame implements ActionListener {
 	private JButton btnClean;
 	private ItemList list;
 	private DataMeneger dm;
+	private static AddItem frame;
     private ArrayList<String> act=new ArrayList<String>();
 	/**
 	 * Launch the application.
@@ -43,7 +44,7 @@ public class AddItem extends JFrame implements ActionListener {
 			public void run() {
 				try {
 					
-					AddItem frame = new AddItem();
+					frame = new AddItem();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -157,9 +158,11 @@ public class AddItem extends JFrame implements ActionListener {
 		btnClean.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnClean.setBounds(313, 133, 89, 23);
 		contentPane.add(btnClean);
-		
-	
+	    
 	}
+	
+    
+    
 
 	public void actionPerformed(ActionEvent e) {
 		 
@@ -203,6 +206,9 @@ public class AddItem extends JFrame implements ActionListener {
 		 
 		 if(e.getSource()==btnNewButton_1) {
 			 dm.writeItems(list);
+			 this.setVisible(false);
+			 this.dispose();
+			 new MainPage().setVisible(true);
 		 }
 		
 	}

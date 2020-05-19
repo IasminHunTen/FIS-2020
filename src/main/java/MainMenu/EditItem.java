@@ -48,7 +48,7 @@ public class EditItem extends JFrame implements ActionListener {
 	private DataMeneger dm; 
 	private Item it;
 	private int idx;
-	private static EditItem frame;
+
 	/**
 	 * Launch the application.
 	 */
@@ -56,7 +56,7 @@ public class EditItem extends JFrame implements ActionListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-				    frame = new EditItem();
+					EditItem  frame = new EditItem(0);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -68,11 +68,11 @@ public class EditItem extends JFrame implements ActionListener {
 	/**
 	 * Create the frame.
 	 */
-	public EditItem() {
+	public EditItem(int idx) {
 		dm=new DataMeneger();
 		list=dm.readItems();
 	
-		idx=1;
+		idx=idx;
 		it=list.getItems().get(idx);
 	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -230,7 +230,6 @@ public class EditItem extends JFrame implements ActionListener {
 		
 	}
 	
-
 	
 	public void actionPerformed(ActionEvent e) {
 		String aux;
@@ -294,7 +293,12 @@ public class EditItem extends JFrame implements ActionListener {
 			temp.set(idx, it);
 			list.setItems(temp);
 			dm.writeItems(list);
+			this.setVisible(false);
+			this.dispose();
+		    new MainPage().setVisible(true);
 		}
+		
+		
 		
 	}
 }

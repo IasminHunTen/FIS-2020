@@ -9,13 +9,17 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -38,21 +42,22 @@ public class MainPage extends JFrame implements ActionListener,ItemListener {
 	private JButton btnDelete;
 	private JButton btnEdit;
 	private JButton btnAdd;
+	private JButton btnMark;
 	private DataMeneger dm;
-	private ItemList list;
 	private ArrayList<Item> database;
-	private ArrayList<Item> copybase;
-	
+	private ArrayList<Element> copybase;
+    private ArrayList<Integer> mark;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					   MainPage frame = new MainPage();
-					   frame.setVisible(true);
+					  MainPage frame = new MainPage();
+					  frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -66,9 +71,10 @@ public class MainPage extends JFrame implements ActionListener,ItemListener {
 	public MainPage() {
 		
 	    dm=new DataMeneger();
-	    list=dm.readItems();
-	    database=list.getItems();
-	    copybase=new ArrayList<Item>(database);
+	    database=new ArrayList<Item>();
+	    copybase=new ArrayList<Element>();
+	    mark=new ArrayList<Integer>();
+	    
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -83,7 +89,7 @@ public class MainPage extends JFrame implements ActionListener,ItemListener {
 		textField.setColumns(10);
 		
 		search = new JButton("search");
-		search.setFont(new Font("Tahoma", Font.BOLD, 14));
+		search.setFont(new Font("Tahoma", Font.BOLD, 12));
 		search.setBounds(347, 10, 77, 23);
 		search.addActionListener(this);
 		contentPane.add(search);
@@ -168,35 +174,62 @@ public class MainPage extends JFrame implements ActionListener,ItemListener {
 		
 		btnEdit = new JButton("edit");
 		btnEdit.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnEdit.setBounds(0, 158, 77, 30);
+		btnEdit.setBounds(0, 188, 77, 30);
 		btnEdit.addActionListener(this);
 		contentPane.add(btnEdit);
 		
 		btnAdd = new JButton("add");
 		btnAdd.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnAdd.setBounds(0, 207, 77, 30);
+		btnAdd.setBounds(0, 227, 77, 30);
 		btnAdd.addActionListener(this);
 		contentPane.add(btnAdd);
 		
+	    btnMark = new JButton("mark");
+		btnMark.setHorizontalAlignment(SwingConstants.LEFT);
+		btnMark.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnMark.setBounds(0, 150, 77, 30);
+		btnMark.addActionListener(this);
+		contentPane.add(btnMark);
 		
+		this.init();
 		this.setDefaultStatus(); 
 	}
 	
+       class Element{
+    	 private int index;
+    	 private Item it;
+    	 
+	
+    	public Element(int index, Item it) {
+			this.index = index;
+			this.it = it;
+		}
+
+		public int getIndex() {
+			return index;
+		}
+	
+		public Item getIt() {
+			return it;
+		}
+
+		@Override
+		public String toString() {
+			return index+": "+it.getTitle();
+		}
+		
+    	
+		
+       }
+       
+       
+	
 	public   void  setDefaultStatus() {
-		 copybase=(ArrayList<Item>) database.clone();
-		 choice.removeAllItems();
-		 choice_1.removeAllItems();
-		 ArrayList<String> gen=new ArrayList<String>();
-		 choice.addItem("");
-		 choice_1.addItem("");
-		 for(int i=0;i<database.size();i++) {
-			 choice.addItem(database.get(i).getTitle());
-			 if(!gen.contains(database.get(i).getGen()))
-				 gen.add(database.get(i).getGen());
-		 } 
 		 
-		 for(String str:gen)
-			 choice_1.addItem(str);
+		 choice.removeAllItems();
+		 choice.addItem("");
+		 for(Element el:copybase)
+			 choice.addItem(el.toString());
 		 
 		 textField.setText("");
 		 textField_1.setText("");
@@ -206,71 +239,111 @@ public class MainPage extends JFrame implements ActionListener,ItemListener {
 		 
 		}
 	
-	public void callOutByName(String str) {
+	public void init() {
+	  database.clear();
+	  copybase.clear();
+	  database=dm.readItems().getItems();
+	  ArrayList<String> gen=new ArrayList<String>();
+		for(int i=0;i<database.size();i++) {
+			copybase.add(new Element(i,database.get(i)));
+			if(!gen.contains(database.get(i).getGen()))
+			   gen.add(database.get(i).getGen());
+		}   
+		choice_1.addItem("");
+		for(String str : gen)
+			choice_1.addItem(str);
+	}
+	
+	public void writeElement(ArrayList<Element> el) {
 		choice.removeAllItems();
-		ArrayList<String> rez=new ArrayList<String>();
+		choice.addItem("");
+		for(Element e:el)
+			choice.addItem(e.toString());
+	}
+	
+	public void callOutByName(String str) {
+
+		ArrayList<Element> rez=new ArrayList<Element>();
 	    String target=str.toLowerCase();
 	    
-	    for(Item it: copybase) {
-	    	if(it.getTitle().toLowerCase().contains(target))
-	    		rez.add(it.getTitle());
+	    for(Element it: copybase) {
+	    	if(it.getIt().getTitle().toLowerCase().contains(target))
+	    		rez.add(it);
 	    }
 	    
-	    choice.addItem("");
-	    if(rez.size()>0)
-	    for(String title : rez) 
-	    	choice.addItem(title);
-	    movies.setEnabled(false);
-	    series.setEnabled(false);
+	    this.writeElement(rez);
 	  
 	}
 	
+	public int getTarget(String str){
+		String[] aux=str.split(":");
+	    int rez=Integer.parseInt(aux[0]);
+		return rez;
+	}
+	
+	
 	public void filter(String gen,Integer y1,Integer y2) {
-		ArrayList<Item> rez=new ArrayList<Item>(copybase);
+		ArrayList<Element> rez=new ArrayList<Element>(copybase);
 		
 		if(gen!=null) {
 			for(int i=0;i<rez.size();i++)
-				if(!rez.get(i).getGen().equals(gen))
+				if(!rez.get(i).getIt().getGen().equals(gen))
                   rez.remove(i);
 		}
 		if(y1!=null) {
 		  for(int i=0;i<rez.size();i++)
-			  if(rez.get(i).getYear()<y1)
+			  if(rez.get(i).getIt().getYear()<y1)
 				  rez.remove(i);
 		  
 		}
 		
 		if(y2!=null) {
 			for(int i=0;i<rez.size();i++)
-				if(rez.get(i).getYear()>y2)
+				if(rez.get(i).getIt().getYear()>y2)
 					rez.remove(i);
 		}
 		
-	    choice.removeAllItems();
-	    
-	    choice.addItem("");
-	    for(Item it:rez) {
-	    	choice.addItem(it.getTitle());
-	    }
+	    this.writeElement(rez);
 	
 	}
 	
     
 	public void onlyOneFictionary(Class<? extends Item> cla) {
-		choice.removeAllItems();
-		choice.addItem("");
-		for(Item it: copybase) 
-			if(it.getClass()==cla) 
-				choice.addItem(it.getTitle());
+		ArrayList<Element> rez=new ArrayList<Element>();
+		for(Element it: copybase) 
+			if(it.getIt().getClass()==cla) 
+				rez.add(it);
+		this.writeElement(rez);
 	}
 	
-	public void kill(String tokill) {
-		for(Item it : database) {
-			if(it.getTitle().equals(tokill));
-			database.remove(it);
-		    break;
+	public void del(int x) {
+		if(x==0) {
+			System.out.println("No Item Selected");
+			return;
 		}
+		
+	    int decision=JOptionPane.showConfirmDialog(null," Are you sore you want to delete item : "+choice.getItemAt(x));
+		if(JOptionPane.YES_OPTION==decision) {
+			int d=getTarget(choice.getItemAt(x).toString());
+			if(!mark.contains(d))
+				mark.add(d);
+			choice.removeItemAt(x);
+		
+		}
+			
 	}
+	
+	
+	
+	public void systemRealise() {
+		Collections.sort(mark);
+		Collections.reverse(mark);
+		for(Integer it:mark)
+			database.remove(it.intValue());
+		dm.writeItems(new ItemList(database));
+	}
+
+	 
 
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnDefault)
@@ -289,17 +362,32 @@ public class MainPage extends JFrame implements ActionListener,ItemListener {
 	        this.filter(p1, p2, p3);  
 	    }
 	    
+	      if(e.getSource()==btnMark) {      
+	       this.del(choice.getSelectedIndex());
+	      }
+	      
 	      if(e.getSource()==btnDelete) {
-	    	  System.out.println(database.toString());
-	    	  if(choice.getSelectedIndex()>0) {
-	    		  this.kill(choice.getSelectedItem().toString());
-	    		  choice.removeItemAt(choice.getSelectedIndex());
-	    	  }
-	    	  System.out.println(database.toString());
+	    	  this.systemRealise();
+	    	  this.init();
+	    	  this.setDefaultStatus();
 	      }
 	    	  
-	    
-	    
+	      if(e.getSource()==btnAdd) {
+            this.setVisible(false);
+            this.dispose();
+	    	new AddItem().setVisible(true);;
+	      }
+	      if(e.getSource()==btnEdit) {
+	    	 int next=choice.getSelectedIndex();
+	    	 if(next==0) {
+	    		 System.out.println("No Item Selected");
+	    	 }else {
+	         next=getTarget(choice.getSelectedItem().toString());		 
+	   	     this.setVisible(false);
+	   	     this.dispose();
+	   	     new EditItem(next).setVisible(true);
+	    	 }
+	      }
 	       
 		
 	}
@@ -309,6 +397,7 @@ public class MainPage extends JFrame implements ActionListener,ItemListener {
 		      this.onlyOneFictionary(Movie.class);   
 		      series.setSelected(false);
 		    }
+		
 		    
 		if(series.isSelected()) {
 		  	this.onlyOneFictionary(Series.class);

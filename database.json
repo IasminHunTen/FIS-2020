@@ -1,18 +1,26 @@
 {
   "items" : [ {
-    "type" : "movie",
-    "title" : "Ford v Ferrarii",
-    "gen" : "Biography",
-    "year" : 2019,
-    "mainPlot" : "American car designer Carroll Shelby and driver Ken Miles battle corporate interference and the laws of physics to build a revolutionary race car for Ford in order to defeat Ferrari at the 24 Hours of Le Mans in 1966.",
-    "actors" : [ "Matt Damon", "Christan Bale", "Jon Bernthal" ]
+    "type" : "series",
+    "title" : "Iasmin",
+    "gen" : "psyhologic",
+    "year" : 1999,
+    "mainPlot" : "gydvajssgj ",
+    "actors" : [ "Constantin Iasmin", "Dana Bosoanca" ],
+    "seasons" : [ 17 ]
   }, {
     "type" : "series",
-    "title" : "WestWorld",
-    "gen" : "Drama",
-    "year" : 2016,
-    "mainPlot" : ".Set at the intersection of the near future and the reimagined past, explore a world in which every human appetite can be indulged without consequence.",
-    "actors" : [ "Evan Rachel Wood", "Jeffery Wright", "Ed Harris" ],
-    "seasons" : [ 10, 10, 8 ]
+    "title" : "Iasmin",
+    "gen" : "psyhologic",
+    "year" : 1999,
+    "mainPlot" : "gydvajssgj ",
+    "actors" : [ "Constantin Iasmin", "Dana Bosoanca" ],
+    "seasons" : [ 17 ]
+  }, {
+    "type" : "movie",
+    "title" : "Ford vs Ferrari",
+    "gen" : "Bibliographic",
+    "year" : 2019,
+    "mainPlot" : "American Car Designer Caroll Shelby and driver Ken Miles battle corpoarte interferance and the laws of physics to built a revolutionary race care for Ford in order to defeat Ferrari at the 24 Hours of Le Mans in 1966",
+    "actors" : [ "cndcjnd" ]
   } ]
 }
