@@ -13,6 +13,8 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+
 import java.awt.Choice;
 import java.awt.Button;
 import java.awt.event.ActionListener;
@@ -35,10 +37,10 @@ public class EditItem extends JFrame implements ActionListener {
 	private JButton btnUndo;
 	private JButton button_3;
 	private JButton button_2;
-	private Choice choice_1;
+	private JComboBox jcb1;
 	private JButton btnRemove;
 	private JButton btnNewButton_1;
-	private Choice choice;
+	private JComboBox jcb;
 	private JButton button_1;
 	private JButton btnNewButton;
 	private JButton button;
@@ -144,11 +146,13 @@ public class EditItem extends JFrame implements ActionListener {
 		lblActors.setBounds(10, 162, 67, 14);
 		contentPane.add(lblActors);
 		
-	    choice = new Choice();
-		choice.setBounds(83, 162, 110, 20);
+	    jcb = new JComboBox();
+		jcb.setBounds(83, 162, 110, 20);
+		jcb.setEditable(true);
+		jcb.addActionListener(this);
 		for(int i=0;i<it.getActors().size();i++)
-			choice.add(it.getActors().get(i));
-		contentPane.add(choice);
+			jcb.addItem(it.getActors().get(i));
+		contentPane.add(jcb);
 		
 		btnNewButton_1 = new JButton("add");
 		btnNewButton_1.addActionListener(this);
@@ -167,14 +171,16 @@ public class EditItem extends JFrame implements ActionListener {
 		lblNewLabel.setBounds(224, 164, 66, 14);
 		contentPane.add(lblNewLabel);
 		
-	    choice_1 = new Choice();
-		choice_1.setBounds(291, 162, 28, 20);
+	    jcb1 = new JComboBox();
+		jcb1.setBounds(291, 162, 28, 20);
+		jcb1.setEditable(true);
+		jcb1.addActionListener(this);
 		if(it instanceof Series) {
 			Series s=(Series)it;
 		    for(int i=0;i<s.getSeasons().size();i++)
-		      choice_1.add(String.valueOf(s.getSeasons().get(i)));
+		      jcb1.addItem(String.valueOf(s.getSeasons().get(i)));
 		}
-		contentPane.add(choice_1);
+		contentPane.add(jcb1);
 		
 		button_2 = new JButton("add");
 		button_2.addActionListener(this);
@@ -189,7 +195,7 @@ public class EditItem extends JFrame implements ActionListener {
 		contentPane.add(button_3);
 		
 		if(it instanceof Movie) {
-			choice_1.setVisible(false);
+			jcb1.setVisible(false);
 			button_2.setVisible(false);
 			button_3.setVisible(false);
 		}
@@ -212,16 +218,16 @@ public class EditItem extends JFrame implements ActionListener {
 		textField.setText(it.getTitle());
 		textField_1.setText(it.getGen());
 		textField_2.setText(it.getMainPlot());
-		choice.removeAll();
+		jcb.removeAllItems();
 		for(int i=0;i<it.getActors().size();i++)
-			choice.add(it.getActors().get(i));
+			jcb.addItem(it.getActors().get(i));
 		if(it instanceof Series) {
-			choice_1.removeAll();
+			jcb1.removeAll();
 			Series s=(Series)it;
 		    for(int i=0;i<s.getSeasons().size();i++)
-		      choice_1.add(String.valueOf(s.getSeasons().get(i)));
+		      jcb1.addItem(String.valueOf(s.getSeasons().get(i)));
 		}
-		frame.setVisible(true);
+		
 	}
 	
 
@@ -246,17 +252,15 @@ public class EditItem extends JFrame implements ActionListener {
 			if(!aux.equals("")) {
 			act=it.getActors();
 			act.add(aux);
-			choice.add(aux);
+			jcb.addItem(aux);
 			it.setActors(act);
-			frame.setVisible(true);
 			}
 		}
 		
 		if(e.getSource()==btnRemove) {
 			act=it.getActors();
-			act.remove(choice.getSelectedIndex());
-			choice.remove(choice.getSelectedIndex());
-			frame.setVisible(true);
+			act.remove(jcb.getSelectedIndex());
+			jcb.removeItemAt(jcb.getSelectedIndex());
 			it.setActors(act);
 		}
 		
@@ -269,17 +273,15 @@ public class EditItem extends JFrame implements ActionListener {
 				if(!aux.equals("")) {
 				sez.add(Integer.parseInt(aux));
 				s.setSeasons(sez);
-				choice_1.add(aux);
-				frame.setVisible(true);
+				jcb1.addItem(aux);
 				}
 			}
 			
 			if(e.getSource()==button_3) {
 				sez=s.getSeasons();
-				choice.remove(choice_1.getSelectedIndex());
-				sez.remove(choice_1.getSelectedIndex());
+				jcb.removeItemAt(jcb1.getSelectedIndex());
+				sez.remove(jcb1.getSelectedIndex());
 				s.setSeasons(sez);
-				frame.setVisible(true);
 			}
 		}
 		
