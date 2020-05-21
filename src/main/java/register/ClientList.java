@@ -10,6 +10,7 @@ public class ClientList {
 	}
 	
 	public ClientList(ArrayList<Client> clientsList) {
+		super();
 		clients=clientsList;
 	}
 	

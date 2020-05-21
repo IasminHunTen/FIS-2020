@@ -11,13 +11,18 @@ public class Test {
 	public static void main(String[] args) {
 		Client c1=new Client("an","cal");
 		Client c2=new Client("ab","cal");
-		Client c3=new Client("dan","zor");
+		Client c3=new Client("aron","efe");
+		
 		//User a1=new Admin("buna","ziua");
 		ArrayList<Client> list=new ArrayList<Client>();
 		list.add(c1);
 		list.add(c2);
+		list.add(c3);
 		ClientList l=new ClientList(list);
-		l.addClient(c3);
+		UserManager u=new UserManager();
+		u.writeClients(l);
+		//u.addClient(c3);
+		System.out.println(u.readClients());
 	}
 
 }

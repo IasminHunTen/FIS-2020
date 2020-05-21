@@ -1,0 +1,15 @@
+{
+  "clients" : [ {
+    "item" : null,
+    "name" : "an",
+    "password" : "5ad0c4678be2918aaf12937ad59da153f7d9c6bc"
+  }, {
+    "item" : null,
+    "name" : "ab",
+    "password" : "a45ad15bec23a944333450e8789b5169b28450a3"
+  }, {
+    "item" : null,
+    "name" : "aron",
+    "password" : "fed80e55be8a26eb7f522824ebff27c785f17134"
+  } ]
+}

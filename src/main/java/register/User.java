@@ -1,14 +1,31 @@
 package register;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.util.Arrays;
+
 public abstract class User {
 
-	private String Name;
-	private String Password;
-	private String Role;
+	protected String Name;
+	protected String Password;
+	protected byte[] Salt; // the salt doesn't get saved into jSon
+	
+	public User() {
+		super();
+	}
 	
 	public User(String Name, String Password) {
 		this.Name=Name;
-		this.Password=Password;  //remember to hash the Password !!!!!!
+		
+		try {
+			this.Salt= getSalt() ;
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		this.Password=SHA_256(Password,Salt);
 	}
 	
 	@Override
@@ -26,12 +43,14 @@ public abstract class User {
 		// TODO Auto-generated method stub
 		return super.hashCode();
 	}
+
+	
+	
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+		return "User [Name=" + Name + ", Password=" + Password + ", Salt=" + Arrays.toString(Salt) + "]";
 	}
-	
+
 	public String getName() {
 		return Name;
 	}
@@ -41,15 +60,47 @@ public abstract class User {
 	public String getPassword() {
 		return Password;
 	}
-	public void setPassword(String password) {
-		Password = password;
+	
+	// reset password method, maybe
+	
+	public boolean checkPassword(String passwordTest) { // verifica daca stringul introdus incriptat devine aceeas parola cu cea a utilizatorului
+		String hashedPassword=SHA_256(passwordTest,Salt);
+		if (hashedPassword.equals(Password))
+			return true;
+		else
+			return false;
 	}
-	public String getRole() {
-		return Role;
+
+
+	private String SHA_256(String plainPassword,byte[] sal) {
+		  {
+		        String generatedPassword = null;
+		        try {
+		            MessageDigest md = MessageDigest.getInstance("SHA-1");
+		            md.update(sal);
+		            byte[] bytes = md.digest(plainPassword.getBytes());
+		            StringBuilder sb = new StringBuilder();
+		            for(int i=0; i< bytes.length ;i++)
+		            {
+		                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+		            }
+		            generatedPassword = sb.toString();
+		        } 
+		        catch (NoSuchAlgorithmException e) 
+		        {
+		            e.printStackTrace();
+		        }
+		        return generatedPassword;
+		    }
 	}
-	public void setRole(String role) {
-		Role = role;
-	}
+	
+	private static byte[] getSalt() throws NoSuchAlgorithmException
+    {
+        SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
+        byte[] salt = new byte[16];
+        sr.nextBytes(salt);
+        return salt;
+    }
 	
 	
 	

@@ -10,6 +10,7 @@ public class AdminList {
 	}
 	
 	public AdminList(ArrayList<Admin> adminsList) {
+		super();
 		admins=adminsList;
 	}
 	

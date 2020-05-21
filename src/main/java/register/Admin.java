@@ -4,7 +4,6 @@ public class Admin extends User {//cred ca nu ar trebui ca orcine sa poata crea 
 
 	public Admin(String Name, String Password) {
 		super(Name,Password);
-		super.setRole("Admin");
 	}
 
 }
