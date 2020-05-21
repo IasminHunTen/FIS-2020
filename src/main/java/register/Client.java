@@ -38,7 +38,7 @@ public class Client extends User {
 	public void removeItem(String itemName) {
 		//to do
 	}
-	public Item getItem() {
+	public Item getItem(ArrayList<Item> itemList) {
 		//To do
 		return null;
 	}

@@ -1,15 +1,18 @@
 {
   "clients" : [ {
-    "item" : null,
+    "playList" : [ ],
     "name" : "an",
-    "password" : "5ad0c4678be2918aaf12937ad59da153f7d9c6bc"
+    "password" : "3f3593dd3be7a1f4425596b7f5ca419b9a56798c",
+    "salt" : "V8uqXRzIY5zWXO7CU+KOFw=="
   }, {
-    "item" : null,
+    "playList" : [ ],
     "name" : "ab",
-    "password" : "a45ad15bec23a944333450e8789b5169b28450a3"
+    "password" : "a0c6398842521ae5e44e0473790da33e5469df3d",
+    "salt" : "qUs6tVOum/jrFhx+ck8oNw=="
   }, {
-    "item" : null,
+    "playList" : [ ],
     "name" : "aron",
-    "password" : "fed80e55be8a26eb7f522824ebff27c785f17134"
+    "password" : "6e7fe107ab894435a6130b044f52181d1142c575",
+    "salt" : "JsULj00DdwGa/mOTHN6LNA=="
   } ]
 }

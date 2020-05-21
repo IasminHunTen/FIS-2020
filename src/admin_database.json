@@ -1,11 +1,11 @@
 {
   "admins" : [ {
     "name" : "buna",
-    "saltS" : "[B@4e25154f",
-    "password" : "d2b7cb85518469ba9fde324a18fc91be068774d6"
+    "password" : "b0c1c9b9b70fb0f88863b8aea811f67da552d5c3",
+    "salt" : "qf2yS3mlyqlIz+G+mX5K4g=="
   }, {
     "name" : "fe",
-    "saltS" : "[B@70dea4e",
-    "password" : "efd2ce0ee358fed254a02fd41c308dbdda9fdeac"
+    "password" : "eed5f64a3dc5b9ad22d2f0e97eba1d203bd75105",
+    "salt" : "AtfMlbeHbK/o/dqCM6sufg=="
   } ]
 }

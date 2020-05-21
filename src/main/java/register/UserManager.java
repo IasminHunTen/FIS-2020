@@ -51,7 +51,7 @@ public class UserManager {
 			writeClients(cl);
 	}
 	
-	public ClientList readClients() { // Dosen't work. I don't know why
+	public ClientList readClients() {
 		 ClientList cl = new ClientList();
 		 File f=new File("client_database.json");
 		 if(!f.exists() || f.length()==0)

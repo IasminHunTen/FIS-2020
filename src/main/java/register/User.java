@@ -10,7 +10,7 @@ public abstract class User {
 	protected String Name;
 	protected String Password;
 	protected byte[] Salt;
-	protected String SaltS; // nu cea mai eleganta metoda, dar pentru a salva Salt in json merge
+	
 	
 	public User() {
 		
@@ -20,12 +20,11 @@ public abstract class User {
 		this.Name=Name;
 		
 		try {
-			this.Salt= getSalt() ;
+			this.Salt= getSaltGenerator() ;
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		SaltS=Salt.toString();
 		this.Password=SHA_256(Password,Salt);
 	}
 	
@@ -36,6 +35,10 @@ public abstract class User {
 		this.Password=Password;
 	}
 	
+	public byte[] getSalt() {
+		return Salt;
+	}
+
 	@Override
 	public boolean equals(Object obj) {// presupunem ca nu acceptam 2 useri cu acelasi nume
 		if (obj instanceof User)
@@ -76,15 +79,8 @@ public abstract class User {
 	protected void setSalt(byte[] salt) {
 		Salt = salt;
 	}
-
-	public String getSaltS() {
-		return SaltS;
-	}
-
-	public void setSaltS(String saltS) {
-		Salt=saltS.getBytes();
-		SaltS = saltS;
-	}
+	
+	
 
 	public boolean checkPassword(String passwordTest) { // verifica daca stringul introdus incriptat devine aceeas parola cu cea a utilizatorului
 		String hashedPassword=SHA_256(passwordTest,Salt);
@@ -117,7 +113,7 @@ public abstract class User {
 		    }
 	}
 	
-	private static byte[] getSalt() throws NoSuchAlgorithmException
+	private static byte[] getSaltGenerator() throws NoSuchAlgorithmException
     {
         SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
         byte[] salt = new byte[16];
