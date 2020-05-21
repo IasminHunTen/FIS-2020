@@ -1,0 +1,9 @@
+{
+  "admins" : [ {
+    "name" : "buna",
+    "password" : "126792a6fba6b387215bcd9d95fc99bb007ef736"
+  }, {
+    "name" : "fe",
+    "password" : "b599d758fbf1609ee9c12f6e206dcbaf10b3d701"
+  } ]
+}

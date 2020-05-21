@@ -9,6 +9,10 @@ public class Client extends User {
 
 	private ArrayList<Item> PlayList= new ArrayList<Item>();
 	
+	public Client() {
+		super();
+	}
+	
 	public Client (String Name, String Password) {
 		super(Name,Password);
 	}
@@ -18,6 +22,14 @@ public class Client extends User {
 		PlayList=items;
 	}
 	
+	public ArrayList<Item> getPlayList() {
+		return PlayList;
+	}
+
+	public void setPlayList(ArrayList<Item> playList) {
+		PlayList = playList;
+	}
+
 	public void addItem(Item it)
 	{
 		PlayList.add(it);

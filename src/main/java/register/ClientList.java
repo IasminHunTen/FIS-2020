@@ -27,4 +27,9 @@ public class ClientList {
 	
 	}
 
+	@Override
+	public String toString() {
+		return "ClientList [clients=" + clients + "]";
+	}
+
 }

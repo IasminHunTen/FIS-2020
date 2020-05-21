@@ -11,8 +11,9 @@ public abstract class User {
 	protected String Password;
 	protected byte[] Salt; // the salt doesn't get saved into jSon
 	
+	
 	public User() {
-		super();
+		
 	}
 	
 	public User(String Name, String Password) {
@@ -26,6 +27,13 @@ public abstract class User {
 		}
 		
 		this.Password=SHA_256(Password,Salt);
+	}
+	
+	protected User(String Name, String Password,byte[] Salt) {
+		this.Name=Name;
+		
+		this.Salt= Salt ;
+		this.Password=Password;
 	}
 	
 	@Override
@@ -61,8 +69,14 @@ public abstract class User {
 		return Password;
 	}
 	
-	// reset password method, maybe
-	
+	protected void setPassword(String password) {
+		Password = password;
+	}
+
+	protected void setSalt(byte[] salt) {
+		Salt = salt;
+	}
+
 	public boolean checkPassword(String passwordTest) { // verifica daca stringul introdus incriptat devine aceeas parola cu cea a utilizatorului
 		String hashedPassword=SHA_256(passwordTest,Salt);
 		if (hashedPassword.equals(Password))
