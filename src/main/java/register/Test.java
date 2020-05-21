@@ -32,7 +32,17 @@ public class Test {
 		UserManager u=new UserManager();
 		u.writeAdmins(l);
 		//u.addClient(c3);
-		System.out.println(u.readAdmins());
+		//System.out.println(u.readAdmins());
+		ArrayList<Admin> x=u.readAdmins().getAdmins();
+		System.out.println("Salt a1: " +a1.Salt);
+		System.out.println("Salt a2: " +a2.Salt);
+		System.out.println("SaltS a1: " + a1.SaltS);
+		System.out.println(x.get(0).Salt);
+		System.out.println(x.get(0).SaltS);
+		if(x.get(0).checkPassword("ziua"))
+			System.out.println("ie");
+		else
+			System.out.println("ne");
 	}
 
 }

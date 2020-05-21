@@ -9,8 +9,8 @@ public abstract class User {
 
 	protected String Name;
 	protected String Password;
-	protected byte[] Salt; // the salt doesn't get saved into jSon
-	
+	protected byte[] Salt;
+	protected String SaltS; // nu cea mai eleganta metoda, dar pentru a salva Salt in json merge
 	
 	public User() {
 		
@@ -25,7 +25,7 @@ public abstract class User {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		SaltS=Salt.toString();
 		this.Password=SHA_256(Password,Salt);
 	}
 	
@@ -75,6 +75,15 @@ public abstract class User {
 
 	protected void setSalt(byte[] salt) {
 		Salt = salt;
+	}
+
+	public String getSaltS() {
+		return SaltS;
+	}
+
+	public void setSaltS(String saltS) {
+		Salt=saltS.getBytes();
+		SaltS = saltS;
 	}
 
 	public boolean checkPassword(String passwordTest) { // verifica daca stringul introdus incriptat devine aceeas parola cu cea a utilizatorului
