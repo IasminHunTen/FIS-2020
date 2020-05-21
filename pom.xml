@@ -3,4 +3,12 @@
   <groupId>fis-2020</groupId>
   <artifactId>fis-2020</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <dependencies>
+  <dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.10.0</version>
+  </dependency>
+ 
+</dependencies>
 </project>
