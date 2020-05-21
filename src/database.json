@@ -1,0 +1,10 @@
+{
+  "items" : [ {
+    "type" : "movie",
+    "title" : "zir",
+    "gen" : "sds",
+    "year" : 1999,
+    "mainPlot" : "sth",
+    "actors" : [ "asdf" ]
+  } ]
+}
