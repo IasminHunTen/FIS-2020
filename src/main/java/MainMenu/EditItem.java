@@ -47,7 +47,7 @@ public class EditItem extends JFrame implements ActionListener {
 	private ItemList list;
 	private DataMeneger dm; 
 	private Item it;
-	private int idx;
+	private static int idx;
 
 	/**
 	 * Launch the application.
@@ -56,7 +56,7 @@ public class EditItem extends JFrame implements ActionListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EditItem  frame = new EditItem(0);
+					EditItem  frame = new EditItem(idx);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -72,7 +72,7 @@ public class EditItem extends JFrame implements ActionListener {
 		dm=new DataMeneger();
 		list=dm.readItems();
 	
-		idx=idx;
+		this.idx=idx;
 		it=list.getItems().get(idx);
 	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -278,7 +278,7 @@ public class EditItem extends JFrame implements ActionListener {
 			
 			if(e.getSource()==button_3) {
 				sez=s.getSeasons();
-				jcb.removeItemAt(jcb1.getSelectedIndex());
+				jcb1.removeItemAt(jcb1.getSelectedIndex());
 				sez.remove(jcb1.getSelectedIndex());
 				s.setSeasons(sez);
 			}
@@ -291,6 +291,7 @@ public class EditItem extends JFrame implements ActionListener {
 		if(e.getSource()==btnAplly) {
 			ArrayList<Item> temp=list.getItems();
 			temp.set(idx, it);
+			
 			list.setItems(temp);
 			dm.writeItems(list);
 			this.setVisible(false);
