@@ -6,10 +6,20 @@ public abstract class User {
 	private String Password;
 	private String Role;
 	
+	public User(String Name, String Password) {
+		this.Name=Name;
+		this.Password=Password;  //remember to hash the Password !!!!!!
+	}
+	
 	@Override
-	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return super.equals(obj);
+	public boolean equals(Object obj) {// presupunem ca nu acceptam 2 useri cu acelasi nume
+		if (obj instanceof User)
+		{
+			User u=(User)obj;
+			if(this.getName().equals(u.getName()))
+				return true;
+		}
+		return false;
 	}
 	@Override
 	public int hashCode() {
