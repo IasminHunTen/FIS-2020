@@ -27,7 +27,7 @@ public class Test{
 		u.writeClients(l);
 		c3.addItem(new Movie("title","gen", 1999, "plot",new ArrayList<String>() ));
 		u.addClient(c3);
-		System.out.println(u.readClients());
+		/*System.out.println(u.readClients());
 /*
 		ArrayList<Admin> list=new ArrayList<Admin>();
 		list.add(a1);
