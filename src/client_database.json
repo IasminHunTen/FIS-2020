@@ -1,21 +1,30 @@
 {
   "clients" : [ {
     "playList" : [ ],
-    "items" : [ ],
     "name" : "an",
-    "salt" : "8UAzHydj8lI8lCjfaYABug==",
-    "password" : "e116324b5fccde6bdc26c360228bb0f1db49a7c7"
+    "password" : "310a03127d6422b3c030ea6894c4e787fe4d6386",
+    "salt" : "SgnmcfakH6bAjCHomGmO2A=="
   }, {
     "playList" : [ ],
-    "items" : [ ],
     "name" : "ab",
-    "salt" : "AwrHhSxELHh/QFAZi+sO9w==",
-    "password" : "bf8e8f93459daa908e35cdd6aa1f4f76bf3b2701"
+    "password" : "913079809b007d905be18f1feccbee6a49fdd46c",
+    "salt" : "drNb8BmXm82uZEkFk5PnEQ=="
+  }, {
+    "playList" : [ {
+      "type" : "movie",
+      "title" : "title",
+      "gen" : "gen",
+      "year" : 1999,
+      "mainPlot" : "plot",
+      "actors" : [ ]
+    } ],
+    "name" : "zor",
+    "password" : "b4bb8d336aa7def10bbdeae2a6f2d307759286c9",
+    "salt" : "hvubS+Hoh7Y8WdY5fCnJZQ=="
   }, {
     "playList" : [ ],
-    "items" : [ ],
-    "name" : "zor",
-    "salt" : "yqNcVLjryNjTqUQ4sYM4fw==",
-    "password" : "59c0d7233f12eea9ec10b7e452fad485276c5e7a"
+    "name" : "naem",
+    "password" : "f32cb722e9700fa207b41fd5c0b1b692e5adb8ba",
+    "salt" : "Jxj0dcp6Hv+NTmyIxfKBHw=="
   } ]
 }

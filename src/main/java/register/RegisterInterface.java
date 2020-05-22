@@ -75,6 +75,7 @@ public class RegisterInterface extends JFrame implements ActionListener{
 	
 	public RegisterInterface() {
 		
+		manager=new UserManager();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 590, 438);
@@ -154,11 +155,10 @@ public class RegisterInterface extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource()==registerButton)
 		{	
-			isFieldEmpty.setText("Username");
 			
 			String username=UsernameField.getText();
 			String password=PasswordField.getText(); //stiu ca nu ar trebui sa fac asta, nici daca o trimit spre incriptare, dar nu sunt sigur
-													// cum poate fi obtinut fara a folosi getText niciodata
+													// cum poate fi obtinut fara a folosi getText niciodata; momentan merge
 			String role=comboBox.getSelectedItem().toString();								 
 			if(username.isEmpty())
 				isFieldEmpty.setText("Username cannot be empty");

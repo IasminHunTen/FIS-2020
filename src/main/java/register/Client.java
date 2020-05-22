@@ -7,7 +7,7 @@ import MainMenu.Item;
 
 public class Client extends User {
 
-	private ArrayList<Item> PlayList= new ArrayList<Item>();  //ar 
+	private ArrayList<Item> PlayList= new ArrayList<Item>();
 	
 	public Client() {
 		super();
@@ -15,11 +15,6 @@ public class Client extends User {
 	
 	public Client (String Name, String Password) {
 		super(Name,Password);
-	}
-	
-	public Client (String Name, String Password, ArrayList<Item> items) {
-		super(Name,Password);
-		PlayList=items;
 	}
 	
 	public ArrayList<Item> getPlayList() {

@@ -1,6 +1,9 @@
 package register;
 
 import java.util.ArrayList;
+
+import MainMenu.Item;
+import MainMenu.Movie;
 //add TestCase junit
 public class Test{
 
@@ -22,6 +25,7 @@ public class Test{
 		ClientList l=new ClientList(list);
 		UserManager u=new UserManager();
 		u.writeClients(l);
+		c3.addItem(new Movie("title","gen", 1999, "plot",new ArrayList<String>() ));
 		u.addClient(c3);
 		System.out.println(u.readClients());
 /*
