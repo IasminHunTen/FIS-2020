@@ -15,7 +15,7 @@ public class UserManager {
 		this.omap=new ObjectMapper();
 	}
 
-	public void writeClients(ClientList cList) {
+	protected void writeClients(ClientList cList) {
 		try {
 			omap.writerWithDefaultPrettyPrinter().writeValue(new File("client_database.json"), cList);
 		} catch (JsonGenerationException e) {
@@ -30,7 +30,7 @@ public class UserManager {
 		}  
 	}
 	
-	public void writeAdmins(AdminList aList) {
+	protected void writeAdmins(AdminList aList) {
 		try {
 			omap.writerWithDefaultPrettyPrinter().writeValue(new File("admin_database.json"), aList);
 		} catch (JsonGenerationException e) {
@@ -51,7 +51,13 @@ public class UserManager {
 			writeClients(cl);
 	}
 	
-	public ClientList readClients() {
+	public void addAdmin(Admin a) {
+		AdminList al= readAdmins();
+		al.addAdmin(a);
+		writeAdmins(al);
+}
+	
+	protected ClientList readClients() {
 		 ClientList cl = new ClientList();
 		 File f=new File("client_database.json");
 		 if(!f.exists() || f.length()==0)
@@ -66,7 +72,7 @@ public class UserManager {
 		 return cl;
 	}
 	
-	public AdminList readAdmins() {
+	protected AdminList readAdmins() {
 		 AdminList ad = null;
 		 File f=new File("admin_database.json");
 		 if(!f.exists() || f.length()==0)

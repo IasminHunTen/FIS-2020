@@ -7,7 +7,7 @@ import MainMenu.Item;
 
 public class Client extends User {
 
-	private ArrayList<Item> PlayList= new ArrayList<Item>();
+	private ArrayList<Item> PlayList= new ArrayList<Item>();  //ar 
 	
 	public Client() {
 		super();
@@ -33,14 +33,6 @@ public class Client extends User {
 	public void addItem(Item it)
 	{
 		PlayList.add(it);
-	}
-	
-	public void removeItem(String itemName) {
-		//to do
-	}
-	public Item getItem(ArrayList<Item> itemList) {
-		//To do
-		return null;
 	}
 
 	@Override

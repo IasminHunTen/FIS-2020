@@ -28,13 +28,6 @@ public abstract class User {
 		this.Password=SHA_256(Password,Salt);
 	}
 	
-	protected User(String Name, String Password,byte[] Salt) {
-		this.Name=Name;
-		
-		this.Salt= Salt ;
-		this.Password=Password;
-	}
-	
 	public byte[] getSalt() {
 		return Salt;
 	}
@@ -82,7 +75,7 @@ public abstract class User {
 	
 	
 
-	public boolean checkPassword(String passwordTest) { // verifica daca stringul introdus incriptat devine aceeas parola cu cea a utilizatorului
+	public boolean checkPassword(String passwordTest) { // verifica daca stringul introdus incriptat e identic cu parola incriptata
 		String hashedPassword=SHA_256(passwordTest,Salt);
 		if (hashedPassword.equals(Password))
 			return true;
