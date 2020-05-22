@@ -10,9 +10,6 @@ import java.awt.GridBagConstraints;
 import javax.swing.JCheckBox;
 import java.awt.Insets;
 import javax.swing.JTextField;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
 import java.awt.GridLayout;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
@@ -102,7 +99,7 @@ public class RegisterInterface extends JFrame implements ActionListener{
 		// TODO Auto-generated constructor stub
 	}
 	
-	@Override
+
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource()==registerButton)
 		{
