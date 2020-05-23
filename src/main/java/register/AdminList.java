@@ -27,4 +27,12 @@ public class AdminList {
 	
 	}
 
+	@Override
+	public String toString() {
+		return "AdminList [admins=" + admins + "]";
+	}
+	
+	
+	
+
 }

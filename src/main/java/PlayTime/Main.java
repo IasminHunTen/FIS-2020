@@ -222,6 +222,9 @@ public class Main extends JFrame implements ActionListener {
 	     			JOptionPane.showMessageDialog(null, "enjoy the Series "+ it.getTitle()+"\nseason "+(cb.getSelectedIndex()+1)+"\nepisode "+(cb1.getSelectedIndex()+1));
 	     		
 	     	}
+	     	if(e.getSource()==aq) {
+	     	   cl.addItem(it);
+	     	}
 	     	
 	}
 }

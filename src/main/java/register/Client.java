@@ -9,26 +9,25 @@ public class Client extends User {
 
 	private ArrayList<Item> PlayList= new ArrayList<Item>();
 	
+	public Client() {
+		super();
+	}
+	
 	public Client (String Name, String Password) {
 		super(Name,Password);
 	}
 	
-	public Client (String Name, String Password, ArrayList<Item> items) {
-		super(Name,Password);
-		PlayList=items;
+	public ArrayList<Item> getPlayList() {
+		return PlayList;
 	}
-	
+
+	public void setPlayList(ArrayList<Item> playList) {
+		PlayList = playList;
+	}
+
 	public void addItem(Item it)
 	{
 		PlayList.add(it);
-	}
-	
-	public void removeItem(String itemName) {
-		//to do
-	}
-	public Item getItem() {
-		//To do
-		return null;
 	}
 
 	@Override

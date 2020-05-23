@@ -9,25 +9,29 @@ public abstract class User {
 
 	protected String Name;
 	protected String Password;
-	protected byte[] Salt; // the salt doesn't get saved into jSon
+	protected byte[] Salt;
+	
 	
 	public User() {
-		super();
+		
 	}
 	
 	public User(String Name, String Password) {
 		this.Name=Name;
 		
 		try {
-			this.Salt= getSalt() ;
+			this.Salt= getSaltGenerator() ;
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		this.Password=SHA_256(Password,Salt);
 	}
 	
+	public byte[] getSalt() {
+		return Salt;
+	}
+
 	@Override
 	public boolean equals(Object obj) {// presupunem ca nu acceptam 2 useri cu acelasi nume
 		if (obj instanceof User)
@@ -57,13 +61,26 @@ public abstract class User {
 	public void setName(String name) {
 		Name = name;
 	}
-	public String getPassword() {
+	protected String getPassword() {
 		return Password;
 	}
 	
-	// reset password method, maybe
-	
-	public boolean checkPassword(String passwordTest) { // verifica daca stringul introdus incriptat devine aceeas parola cu cea a utilizatorului
+	protected void setPassword(String password) {
+		Password = password;
+	}
+
+	protected void setSalt(byte[] salt) {
+		Salt = salt;
+	}
+	/*
+	public boolean checkUsername(String usernameTest) {
+		if (Name.equals(usernameTest))
+			return true;
+		else
+			return false;
+	}nefolosita, in caz ca getName trebuia sa fie privat*/
+
+	public boolean checkPassword(String passwordTest) { // verifica daca stringul introdus incriptat e identic cu parola incriptata
 		String hashedPassword=SHA_256(passwordTest,Salt);
 		if (hashedPassword.equals(Password))
 			return true;
@@ -94,7 +111,7 @@ public abstract class User {
 		    }
 	}
 	
-	private static byte[] getSalt() throws NoSuchAlgorithmException
+	private static byte[] getSaltGenerator() throws NoSuchAlgorithmException
     {
         SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
         byte[] salt = new byte[16];

@@ -1,0 +1,19 @@
+{
+  "admins" : [ {
+    "name" : "buna",
+    "password" : "b0c1c9b9b70fb0f88863b8aea811f67da552d5c3",
+    "salt" : "qf2yS3mlyqlIz+G+mX5K4g=="
+  }, {
+    "name" : "fe",
+    "password" : "eed5f64a3dc5b9ad22d2f0e97eba1d203bd75105",
+    "salt" : "AtfMlbeHbK/o/dqCM6sufg=="
+  }, {
+    "name" : "far",
+    "password" : "e2e5efe520478fd56f11fd52a6423328cac245ea",
+    "salt" : "tNKU1RiQ7CS6qRAhfYc9mg=="
+  }, {
+    "name" : "farge",
+    "password" : "d5da954651e56046ca23d8b2d731afeb13495495",
+    "salt" : "EzItadkXDtI5Qjwa6wcyvw=="
+  } ]
+}
