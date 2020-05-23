@@ -379,10 +379,12 @@ public class MainPage extends JFrame implements ActionListener,ItemListener {
 	      }
 	      if(e.getSource()==btnEdit) {
 	    	 int next=choice.getSelectedIndex();
+	    	
 	    	 if(next==0) {
 	    		 System.out.println("No Item Selected");
 	    	 }else {
-	         next=getTarget(choice.getSelectedItem().toString());		 
+	         next=getTarget(choice.getSelectedItem().toString());	
+	       
 	   	     this.setVisible(false);
 	   	     this.dispose();
 	   	     new EditItem(next).setVisible(true);

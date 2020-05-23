@@ -161,6 +161,17 @@ public class AddItem extends JFrame implements ActionListener {
 	    
 	}
 	
+    public int properInteger() {
+    	int a=0;
+    	try {
+    	    a =Integer.parseInt(textField_3.getText());
+    	}catch(NumberFormatException e) {
+    		textField_3.setText(JOptionPane.showInputDialog("Plese insert a string that can be parse to an integer"));
+    		this.properInteger();
+    	}
+		return a;
+    }
+	
     
     
 
@@ -190,7 +201,7 @@ public class AddItem extends JFrame implements ActionListener {
 	      nou.setTitle(textField.getText());
 	      nou.setGen(textField_1.getText());
 	      nou.setMainPlot(textField_2.getText());
-	      int an=Integer.parseInt(textField_3.getText());
+	      int an=properInteger();
 	      nou.setYear(an);
 	      nou.setActors(act);
 	      list.addItem(nou);	 
