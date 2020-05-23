@@ -81,15 +81,23 @@ public class UserManager {
 
 
 	public void addClient(Client c) throws Exception {
-			ClientList cl= readClients();
+		ClientList cl= readClients();
+		AdminList al=readAdmins();
+		if (!al.containsName(c.getName())) {
 			cl.addClient(c);
-			writeClients(cl);
+			writeClients(cl);	
+		}
+		else throw new Exception("Username already in use");
 	}
 	
 	public void addAdmin(Admin a) throws Exception {
 		AdminList al= readAdmins();
-		al.addAdmin(a);
-		writeAdmins(al);
+		ClientList cl= readClients();
+		if (!cl.containsName(a.getName())) {
+			al.addAdmin(a);
+			writeAdmins(al);
+		}
+		else throw new Exception("Username already in use");
 }
 	// o functie de stergere ar putea fi utila, dar pentru proiect nu pare necesara
 	

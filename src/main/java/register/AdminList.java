@@ -27,6 +27,14 @@ public class AdminList {
 	
 	}
 
+	public boolean containsName(String name) {
+		for(int i=0;i<admins.size();i++) {
+			if(admins.get(i).checkUsername(name))
+				return true;
+		}
+		return false;
+	}
+	
 	@Override
 	public String toString() {
 		return "AdminList [admins=" + admins + "]";

@@ -24,6 +24,16 @@ public class ClientList {
 		else throw new Exception("Client already in the database");
 	}
 
+
+	public boolean containsName(String name) {
+		for(int i=0;i<clients.size();i++) {
+			if(clients.get(i).checkUsername(name))
+				return true;
+		}
+		return false;
+	}
+	
+	
 	@Override
 	public String toString() {
 		return "ClientList [clients=" + clients + "]";

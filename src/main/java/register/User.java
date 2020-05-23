@@ -44,8 +44,7 @@ public abstract class User {
 	}
 	@Override
 	public int hashCode() {
-		// TODO Auto-generated method stub
-		return super.hashCode();
+		return Name.hashCode();
 	}
 
 	
@@ -73,13 +72,12 @@ public abstract class User {
 		Salt = salt;
 	}
 	
-	/*
 	public boolean checkUsername(String usernameTest) {
 		if (Name.equals(usernameTest))
 			return true;
 		else
 			return false;
-	}nefolosita, in caz ca getName trebuia sa fie privat*/
+	}
 
 	public boolean checkPassword(String passwordTest) { // verifica daca stringul introdus incriptat e identic cu parola incriptata
 		String hashedPassword=SHA_256(passwordTest,Salt);
