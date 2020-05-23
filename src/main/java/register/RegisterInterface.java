@@ -1,51 +1,19 @@
 package register;
 
-import javax.swing.JFrame;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
-
-import javax.swing.JSplitPane;
-import javax.swing.BoxLayout;
-import java.awt.GridBagLayout;
-import javax.swing.JToolBar;
-import java.awt.GridBagConstraints;
-import javax.swing.JCheckBox;
-import java.awt.Insets;
-import javax.swing.JTextField;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-
-import MainMenu.MainPage;
-
-import java.awt.GridLayout;
-import javax.swing.JRadioButton;
-import javax.swing.SwingConstants;
-import java.awt.FlowLayout;
-import javax.swing.JScrollPane;
-import javax.swing.JPanel;
-import javax.swing.JTextPane;
-import javax.swing.JLabel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.border.EmptyBorder;
-
 import java.awt.Font;
-import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
-import javax.swing.Action;
-import javax.swing.JButton;
 import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 public class RegisterInterface extends JFrame implements ActionListener{
 	
@@ -151,7 +119,7 @@ public class RegisterInterface extends JFrame implements ActionListener{
 		
 	}
 	
-	@Override
+	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource()==registerButton)
 		{	
