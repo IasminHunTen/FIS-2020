@@ -9,8 +9,10 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.ItemSelectable;
 import java.awt.TextArea;
 
 import javax.swing.JButton;
@@ -56,8 +58,12 @@ public class Main extends JFrame implements ActionListener {
 		act.add("aa");
 		act.add("bb");
 		act.add("cc");
+		ArrayList<Integer> sez =new ArrayList<Integer>();
+		sez.add(10);
+		sez.add(20);
+		sez.add(15);
 		cl=new Client("iasmin","boss");
-		it=new Movie("Capra cu 3 iezi","groaza",1980,"o capra avea 3 iezi mai slabi de cap pe care un lup incearca sa i manace",act);
+		it=new Series("Capra cu 3 iezi","groaza",1980,"o capra avea 3 iezi mai slabi de cap pe care un lup incearca sa i manace",act,sez);
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -92,7 +98,7 @@ public class Main extends JFrame implements ActionListener {
 	    play = new JButton("Play");
 		play.setBackground(new Color(0, 128, 0));
 		play.setFont(new Font("Stencil", Font.PLAIN, 11));
-		play.setBounds(310, 200, 89, 50);
+		play.setBounds(330, 200, 89, 50);
 		play.addActionListener(this);
 		contentPane.add(play);
 		
@@ -110,10 +116,8 @@ public class Main extends JFrame implements ActionListener {
 		ta.setText(it.getMainPlot());
 		ta.setLineWrap(true);
 		ta.setWrapStyleWord(true);
-		JScrollPane pane=new JScrollPane();
-		ta.setText(it.getMainPlot());
-		
-		contentPane.add(pane);
+		ta.setEditable(false);
+		contentPane.add(ta);
 		
 		JLabel lblYear = new JLabel(String.valueOf(it.getYear()));
 		lblYear.setFont(new Font("Vivaldi", Font.BOLD, 22));
@@ -124,26 +128,26 @@ public class Main extends JFrame implements ActionListener {
 		JLabel lblGen = new JLabel(it.getGen());
 		lblGen.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGen.setFont(new Font("Vivaldi", Font.BOLD, 16));
-		lblGen.setBounds(0, 143, 46, 28);
+		lblGen.setBounds(0, 143, 60, 28);
 		contentPane.add(lblGen);
 		
 	    lblSeason = new JLabel("season");
 		lblSeason.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblSeason.setBounds(156, 200, 46, 14);
+		lblSeason.setBounds(147, 200, 46, 14);
 		contentPane.add(lblSeason);
 		
 	    lblEpisode = new JLabel("episode");
 		lblEpisode.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblEpisode.setBounds(227, 200, 46, 14);
+		lblEpisode.setBounds(245, 200, 46, 14);
 		contentPane.add(lblEpisode);
 		
 	    cb = new JComboBox();
-		cb.setBounds(146, 214, 48, 20);
+		cb.setBounds(130, 225, 80, 20);
 		cb.addActionListener(this);
 		contentPane.add(cb);
 		
 		cb1 = new JComboBox();
-		cb1.setBounds(227, 214, 48, 20);
+		cb1.setBounds(227, 225, 85, 20);
 		cb1.addActionListener(this);
 		contentPane.add(cb1);
 		
@@ -169,7 +173,7 @@ public class Main extends JFrame implements ActionListener {
 	
 	
 	
-	public void setUp() {
+	private void setUp() {
 		if(it instanceof Movie) {
 		 lblSeason.setVisible(false);
 		 lblEpisode.setVisible(false);
@@ -180,15 +184,17 @@ public class Main extends JFrame implements ActionListener {
 		}else
 		{
          Series s=(Series) it;
-         cb.addItem("");
-         for(int i=1;i<=s.getSeasons().size();i++)
-        	 cb.addItem("Season "+i);
+         for(int i=0;i<s.getSeasons().size();i++)
+        	 cb.addItem("Season "+(i+1));
 		}
-		cb1.addItem("");
+
 	}
 	
-	
-	
+	private void setEpisodeList(int len) {
+		cb1.removeAllItems();
+		for(int i=0;i<len;i++)
+			cb1.addItem("Episode "+(i+1));
+	}
 
 	public void actionPerformed(ActionEvent e) {
 	     	if(rbmp.isSelected()) {
@@ -202,6 +208,20 @@ public class Main extends JFrame implements ActionListener {
 	          ta.setText(rez);
 	          rbmp.setSelected(false);
 	     	}
-		
+	     	
+	     	if(e.getSource()==cb) {
+	     		Series s =(Series)it;
+	     		int len =s.getSeasons().get(cb.getSelectedIndex());
+	     	    this.setEpisodeList(len);
+	     	}
+	     	
+	     	if(e.getSource()==play) {
+	     		if(it instanceof Movie)
+	     			JOptionPane.showMessageDialog(null, "enjoy the Movie "+it.getTitle());
+	     		else
+	     			JOptionPane.showMessageDialog(null, "enjoy the Series "+ it.getTitle()+"\nseason "+(cb.getSelectedIndex()+1)+"\nepisode "+(cb1.getSelectedIndex()+1));
+	     		
+	     	}
+	     	
 	}
 }
