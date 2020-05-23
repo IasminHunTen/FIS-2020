@@ -12,21 +12,20 @@ public class Test{
 	}
 
 	public static void main(String[] args) {
-		Client c1=new Client("an","cal");
-		Client c2=new Client("ab","cal");
-		Client c3=new Client("zor","daf");
+		/*
+		User c1=new Client("an","cal");
+		User c2=new Client("ab","cal");
+		User c3=new Client("zor","daf");
 		
-		Admin a1=new Admin("buna","ziua");
-		Admin a2=new Admin("fe","rit");
-		ArrayList<Client> list=new ArrayList<Client>();
-		list.add(c1);
-		list.add(c2);
+		User a1=new Admin("buna","ziua");
+		User a2=new Admin("fe","rit");
+		ArrayList<User> list=new ArrayList<User>();
 		//list.add(c3);
-		ClientList l=new ClientList(list);
+		UserList l=new UserList(list);
 		UserManager u=new UserManager();
-		u.writeClients(l);
-		c3.addItem(new Movie("title","gen", 1999, "plot",new ArrayList<String>() ));
-		u.addClient(c3);
+		//u.writeAdmins(l);
+		//c3.addItem(new Movie("title","gen", 1999, "plot",new ArrayList<String>() ));
+		//u.addClient(c3);
 		/*System.out.println(u.readClients());
 /*
 		ArrayList<Admin> list=new ArrayList<Admin>();

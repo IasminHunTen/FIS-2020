@@ -18,11 +18,10 @@ public class ClientList {
 		return clients;
 	}
 	
-	public void addClient(Client c) {
+	public void addClient(Client c) throws Exception {
 		if(!clients.contains(c))
 			clients.add(c);
-		//else throw an exception
-	
+		else throw new Exception("Client already in the database");
 	}
 
 	@Override

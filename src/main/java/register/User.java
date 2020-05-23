@@ -72,6 +72,7 @@ public abstract class User {
 	protected void setSalt(byte[] salt) {
 		Salt = salt;
 	}
+	
 	/*
 	public boolean checkUsername(String usernameTest) {
 		if (Name.equals(usernameTest))

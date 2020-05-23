@@ -17,43 +17,6 @@ public class UserManager {
 		super();
 		this.omap=new ObjectMapper();
 	}
-// user to replace cl and ad, make sure playlist and items can be added to client-user trough UserManager
-	protected void writeUsers(UserList uList) {
-		try {
-			omap.writerWithDefaultPrettyPrinter().writeValue(new File("user_database.json"), uList);
-		} catch (JsonGenerationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}  
-	}
-	
-	protected UserList readUsers() {
-		 UserList ul = new UserList();
-		 File f=new File("user_database.json");
-		 if(!f.exists() || f.length()==0)
-			 ul=new UserList();
-		 try {
-			ul=omap.readerFor(UserList.class).readValue(new File("user_database.json"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		 
-		 return ul;
-	}
-	
-	public void addUser(User u) {
-		UserList ul= readUsers();
-		ul.addUser(u);
-		writeUsers(ul);
-}
-//replace client and admin with users?
 	
 	protected void writeClients(ClientList cList) {
 		try {
@@ -83,26 +46,6 @@ public class UserManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}  
-	}
-	
-	public void addClient(Client c) {
-			ClientList cl= readClients();
-			cl.addClient(c);
-			writeClients(cl);
-	}
-	
-	public void addAdmin(Admin a) {
-		AdminList al= readAdmins();
-		al.addAdmin(a);
-		writeAdmins(al);
-}
-	//merge client and admin functions into user functions
-	public Client getClient(String client) throws Exception {
-		ArrayList<Client> cl = this.readClients().getClients();
-		for(int i=0;i<cl.size();i++)
-			if(cl.get(i).getName().equals(client))
-				return cl.get(i);
-		throw new Exception("User does not exist");
 	}
 	
 	protected ClientList readClients() {
@@ -136,10 +79,43 @@ public class UserManager {
 		 return ad;
 	}
 
+
+	public void addClient(Client c) throws Exception {
+			ClientList cl= readClients();
+			cl.addClient(c);
+			writeClients(cl);
+	}
+	
+	public void addAdmin(Admin a) throws Exception {
+		AdminList al= readAdmins();
+		al.addAdmin(a);
+		writeAdmins(al);
+}
+	// o functie de stergere ar putea fi utila, dar pentru proiect nu pare necesara
+	
+	public Client getClient(String client) throws Exception {
+		ArrayList<Client> cl = this.readClients().getClients();
+		for(int i=0;i<cl.size();i++)
+			if(cl.get(i).getName().equals(client))
+				return cl.get(i);
+		throw new Exception("User does not exist");
+	}
+	
+	public Admin getAdmin(String admin) throws Exception {
+		ArrayList<Admin> al = this.readAdmins().getAdmins();
+		for(int i=0;i<al.size();i++)
+			if(al.get(i).getName().equals(admin))
+				return al.get(i);
+		throw new Exception("User does not exist");
+	}
+	
 	public boolean checkPassword(String username, String password) {
 		try {
-			Client u=this.getClient(username);
-			if(u.checkPassword(password))
+			Client c=this.getClient(username);
+			if(c.checkPassword(password))
+				return true;
+			Admin a=this.getAdmin(username);
+			if(a.checkPassword(password))
 				return true;
 		} catch (Exception e) {
 			e.printStackTrace();

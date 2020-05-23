@@ -18,12 +18,12 @@ public class AdminList {
 		return admins;
 	}
 	
-	public void addAdmin(Admin a) {// poate exista o metoda mai buna, dar am vrut sa verific daca apare acelas nume, cred ca exclude posibilitatea
+	public void addAdmin(Admin a) throws Exception {// poate exista o metoda mai buna, dar am vrut sa verific daca apare acelas nume, cred ca exclude posibilitatea
 								  //  ca un cont sa fie gasit accidental; pe de alta parte toate numele utilizatorilor sunt mai expuse
 							     //	  Equals din user e suprascris ca 2 useri avand acelas nume;
 		if(!admins.contains(a))
 			admins.add(a);
-		//else throw an exception
+		else throw new Exception("Admin already in the database");
 	
 	}
 

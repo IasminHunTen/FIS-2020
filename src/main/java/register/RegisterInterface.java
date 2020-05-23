@@ -17,6 +17,7 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
+import MainMenu.AddItem;
 import MainMenu.MainPage;
 
 import java.awt.GridLayout;
@@ -109,7 +110,7 @@ public class RegisterInterface extends JFrame implements ActionListener{
 		contentPane.add(roleLabel);
 		
 		isFieldEmpty = new JLabel("");
-		isFieldEmpty.setBounds(26, 250, 73, 14);
+		isFieldEmpty.setBounds(115, 250, 353, 14);
 		contentPane.add(isFieldEmpty);
 		
 		UsernameField = new JTextField();
@@ -167,17 +168,40 @@ public class RegisterInterface extends JFrame implements ActionListener{
 			else if(role.isEmpty())
 				isFieldEmpty.setText("Please choose a role");
 			else if(role.equals("Admin")) {//mai eficienta ar fi fost verificare dupa index
-				manager.addAdmin(new Admin(username,password));
-				//takes you to MainPage
+				int ok=0;
+				try {
+					manager.addAdmin(new Admin(username,password));
+				} catch (Exception e1) {
+					isFieldEmpty.setText("Username already in use");
+					ok=1;
+				}
+				if(ok==0) {
+					this.setVisible(false);
+		            this.dispose();
+			    	//new Login().setVisible(true);	
+				}
 			}
 			else if(role.equals("Client")) {
-				manager.addClient(new Client(username,password));
+				int ok=0;
+				try {
+					manager.addClient(new Client(username,password));
+				} catch (Exception e1) {
+					isFieldEmpty.setText("Username already in use");
+					ok=1;
+				}
+				if(ok==0) {
+					this.setVisible(false);
+		            this.dispose();
+			    	//new Login().setVisible(true);	
+				}
 			}
 			
 		}
 		if (e.getSource()==backButton)
 		{
-			//takes you to login
+			this.setVisible(false);
+            this.dispose();
+          //new Login().setVisible(true);
 		}
 	}
 }
