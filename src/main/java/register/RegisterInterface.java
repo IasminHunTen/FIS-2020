@@ -19,6 +19,7 @@ import com.jgoodies.forms.layout.RowSpec;
 
 import MainMenu.AddItem;
 import MainMenu.MainPage;
+import login.LoginInterface;
 
 import java.awt.GridLayout;
 import javax.swing.JRadioButton;
@@ -86,9 +87,6 @@ public class RegisterInterface extends JFrame implements ActionListener{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel label = new JLabel("");
-		label.setBounds(0, 283, 0, 0);
-		
 		JLabel titleLabel = new JLabel("Register");
 		titleLabel.setBounds(237, 39, 71, 21);
 		titleLabel.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -98,12 +96,6 @@ public class RegisterInterface extends JFrame implements ActionListener{
 		
 		JLabel passwordLabel = new JLabel("Password");
 		passwordLabel.setBounds(114, 160, 73, 14);
-		
-		JLabel label_1 = new JLabel("");
-		label_1.setBounds(502, 283, 0, 0);
-		
-		JLabel label_2 = new JLabel("");
-		label_2.setBounds(-10008, -10031, 0, 0);
 		
 		JLabel roleLabel = new JLabel("Role");
 		roleLabel.setBounds(114, 201, 73, 14);
@@ -121,14 +113,11 @@ public class RegisterInterface extends JFrame implements ActionListener{
 		PasswordField.setBounds(197, 157, 175, 20);
 		
 		contentPane.setLayout(null);
-		contentPane.add(label);
 		contentPane.add(titleLabel);
 		contentPane.add(UsernameField);
 		contentPane.add(usernameLabel);
 		contentPane.add(passwordLabel);
 		contentPane.add(PasswordField);
-		contentPane.add(label_1);
-		contentPane.add(label_2);
 		
 		registerButton = new JButton("Register");
 		registerButton.addActionListener(this);
@@ -158,19 +147,19 @@ public class RegisterInterface extends JFrame implements ActionListener{
 		{	
 			
 			String username=UsernameField.getText();
-			String password=PasswordField.getText(); //stiu ca nu ar trebui sa fac asta, nici daca o trimit spre incriptare, dar nu sunt sigur
+			char[] password=PasswordField.getPassword(); //stiu ca nu ar trebui sa fac asta, nici daca o trimit spre incriptare, dar nu sunt sigur
 													// cum poate fi obtinut fara a folosi getText niciodata; momentan merge
 			String role=comboBox.getSelectedItem().toString();								 
 			if(username.isEmpty())
 				isFieldEmpty.setText("Username cannot be empty");
-			else if(password.isEmpty())
+			else if(new String(password).isEmpty())
 				isFieldEmpty.setText("Password cannot be empty");
 			else if(role.isEmpty())
 				isFieldEmpty.setText("Please choose a role");
 			else if(role.equals("Admin")) {//mai eficienta ar fi fost verificare dupa index
 				int ok=0;
 				try {
-					manager.addAdmin(new Admin(username,password));
+					manager.addAdmin(new Admin(username,new String(password)));
 				} catch (Exception e1) {
 					isFieldEmpty.setText("Username already in use");
 					ok=1;
@@ -178,13 +167,13 @@ public class RegisterInterface extends JFrame implements ActionListener{
 				if(ok==0) {
 					this.setVisible(false);
 		            this.dispose();
-			    	//new Login().setVisible(true);	
+			    	new LoginInterface().setVisible(true);	
 				}
 			}
 			else if(role.equals("Client")) {
 				int ok=0;
 				try {
-					manager.addClient(new Client(username,password));
+					manager.addClient(new Client(username,new String(password)));
 				} catch (Exception e1) {
 					isFieldEmpty.setText("Username already in use");
 					ok=1;
@@ -192,7 +181,7 @@ public class RegisterInterface extends JFrame implements ActionListener{
 				if(ok==0) {
 					this.setVisible(false);
 		            this.dispose();
-			    	//new Login().setVisible(true);	
+			    	new LoginInterface().setVisible(true);	
 				}
 			}
 			
@@ -201,7 +190,7 @@ public class RegisterInterface extends JFrame implements ActionListener{
 		{
 			this.setVisible(false);
             this.dispose();
-          //new Login().setVisible(true);
+            new LoginInterface().setVisible(true);
 		}
 	}
 }

@@ -1,0 +1,12 @@
+{
+  "admins" : [ {
+    "name" : "name",
+    "salt" : "s2iEuKaooptXwLGwxBcmPQ=="
+  }, {
+    "name" : "roger",
+    "salt" : "2IFGUyLiR7HWLHsfARD5pg=="
+  }, {
+    "name" : "guy",
+    "salt" : "CCyyvk1JEvyZT4AFwacIeg=="
+  } ]
+}
