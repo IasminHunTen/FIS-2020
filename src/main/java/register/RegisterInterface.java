@@ -2,6 +2,35 @@ package register;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+
+import javax.swing.JSplitPane;
+import javax.swing.BoxLayout;
+import java.awt.GridBagLayout;
+import javax.swing.JToolBar;
+import java.awt.GridBagConstraints;
+import javax.swing.JCheckBox;
+import java.awt.Insets;
+import javax.swing.JTextField;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+
+import MainMenu.MainPage;
+
+
+import java.awt.GridLayout;
+import javax.swing.JRadioButton;
+import javax.swing.SwingConstants;
+import java.awt.FlowLayout;
+import javax.swing.JScrollPane;
+import javax.swing.JPanel;
+import javax.swing.JTextPane;
+import javax.swing.JLabel;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -119,7 +148,7 @@ public class RegisterInterface extends JFrame implements ActionListener{
 		
 	}
 	
-	
+
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource()==registerButton)
 		{	

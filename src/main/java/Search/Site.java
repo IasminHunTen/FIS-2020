@@ -177,9 +177,22 @@ public class Site extends JFrame implements ActionListener {
 		rez=Integer.parseInt(str[0]);
 		return rez;
 	}
+	
+	public void searchProces(String target){
+		ArrayList<Comp> src=new ArrayList<Comp>();
+		comboBox.removeAllItems();
+        String sir=target.toLowerCase();
+        for(Comp c:temp) 
+        	if(c.getTtl().toLowerCase().contains(sir)) 
+        		src.add(c);
+        for (Comp c1:src) 
+        	comboBox.addItem(c1.toString());
+       
+	}
     
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==Search)
+			this.searchProces(textField.getText());
 		
 	}
 }
