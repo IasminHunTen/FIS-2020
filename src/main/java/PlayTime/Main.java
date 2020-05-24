@@ -21,6 +21,7 @@ import com.jgoodies.forms.factories.DefaultComponentFactory;
 import MainMenu.Item;
 import MainMenu.Movie;
 import MainMenu.Series;
+import Search.Site;
 import register.Client;
 
 import javax.swing.JTextArea;
@@ -62,8 +63,6 @@ public class Main extends JFrame implements ActionListener {
 		sez.add(10);
 		sez.add(20);
 		sez.add(15);
-		cl=new Client("iasmin","boss");
-		it=new Series("Capra cu 3 iezi","groaza",1980,"o capra avea 3 iezi mai slabi de cap pe care un lup incearca sa i manace",act,sez);
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -80,6 +79,7 @@ public class Main extends JFrame implements ActionListener {
 	 * Create the frame.
 	 */
 	public Main(Item it,Client cl) {
+		this.it=it;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -181,8 +181,7 @@ public class Main extends JFrame implements ActionListener {
 		 cb1.setEnabled(false);
 		 cb.setVisible(false);
 		 cb1.setVisible(false);
-		}else
-		{
+		}else {	
          Series s=(Series) it;
          for(int i=0;i<s.getSeasons().size();i++)
         	 cb.addItem("Season "+(i+1));
@@ -224,6 +223,12 @@ public class Main extends JFrame implements ActionListener {
 	     	}
 	     	if(e.getSource()==aq) {
 	     	   cl.addItem(it);
+	     	}
+	     	
+	     	if(e.getSource()==back) {
+	     		new Site(cl).setVisible(true);
+	     		this.setVisible(false);
+	     		this.dispose();
 	     	}
 	     	
 	}

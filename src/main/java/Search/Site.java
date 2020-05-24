@@ -3,6 +3,8 @@ package Search;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import MainMenu.*;
+import PlayTime.Main;
+import register.Client;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -44,15 +46,17 @@ public class Site extends JFrame implements ActionListener,ItemListener {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JButton Default;
+	private static Client cl;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		cl=new Client("iasmin","HunTen");
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Site frame = new Site();
+					Site frame = new Site(cl);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -64,11 +68,11 @@ public class Site extends JFrame implements ActionListener,ItemListener {
 	/**
 	 * Create the frame.
 	 */
-	public Site() {
+	public Site(Client cl) {
 		dm=new DataMeneger();
 		il=dm.readItems();
 		database=il.getItems();
-
+		this.cl=cl;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 320);
@@ -332,7 +336,13 @@ public class Site extends JFrame implements ActionListener,ItemListener {
 			for(Comp c : db)
 				comboBox.addItem(c);
 		}
-		
+	    if(e.getSource()==Play) {
+	    	String str=comboBox.getSelectedItem().toString();
+	    	int choice=getIndex(str);
+	    	new Main(database.get(choice),cl).setVisible(true);
+	    	this.setVisible(false);
+	    	this.dispose();
+	    }
 		
 	}
 
