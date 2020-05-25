@@ -60,15 +60,16 @@ public abstract class User {
 	public void setName(String name) {
 		Name = name;
 	}
-	protected String getPassword() {
+	
+	public String getPassword() {
 		return Password;
 	}
 	
-	protected void setPassword(String password) {
+	public void setPassword(String password) {
 		Password = password;
 	}
 
-	protected void setSalt(byte[] salt) {
+	public void setSalt(byte[] salt) {
 		Salt = salt;
 	}
 	
