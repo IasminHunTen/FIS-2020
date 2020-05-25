@@ -222,13 +222,14 @@ public class Site extends JFrame implements ActionListener,ItemListener {
 		
 	}
 	
-	public void CompDefault() {
+	public void CompDefault() {	
 	  for (int i=0;i<database.size();i++)
 		  temp.add(new Comp(i,database.get(i))); 
 	  for (Comp c : temp) {
 		  comboBox.addItem(c.toString());
 	  }
 	}
+	
 	
 	public void setGens() {
 		ArrayList<String> gen=new ArrayList<String>();
@@ -291,25 +292,24 @@ public class Site extends JFrame implements ActionListener,ItemListener {
 	    	
 	    	if(p2!=null) {
 	    		for(int i=0;i<db.size();i++)
-	    			if(p2<db.get(i).getIt().getYear())
+	    			if(p2>db.get(i).getIt().getYear())
 	    				if(!mark.contains(i))
 	    				    mark.add(i);
 	    	}
-	    	
-	    	
-	    	
-	   
-	    	
+	    	System.out.println(mark);
 	    	if(p3!=null) {
 	    		for(int i=0;i<db.size();i++)
-	    			if(p3>db.get(i).getIt().getYear())
+	    			if(p3<db.get(i).getIt().getYear())
 	    				if(!mark.contains(i))
 	    				    mark.add(i);
 	    	}
+	    	System.out.println(mark);
 	    	
 	    	
 	    	Collections.sort(mark);
+	    	System.out.println(mark);
 	    	Collections.reverse(mark);
+	    	System.out.println(mark);
 	    	for(Integer i: mark)
 	    		db.remove(i.intValue());
 	    	
@@ -330,7 +330,7 @@ public class Site extends JFrame implements ActionListener,ItemListener {
 	    	if(!textField_1.getText().isEmpty()) 
 	    		p2=verify(textField_1);
 	    	if(!textField_2.getText().isEmpty()) 
-	    		p2=verify(textField_2);
+	    		p3=verify(textField_2);
 	    	this.filt(p1, p2, p3);
 			comboBox.removeAllItems();
 			for(Comp c : db)
@@ -342,6 +342,17 @@ public class Site extends JFrame implements ActionListener,ItemListener {
 	    	new Main(database.get(choice),cl).setVisible(true);
 	    	this.setVisible(false);
 	    	this.dispose();
+	    }
+	    
+	    if(e.getSource()==Default) {
+	    	rb1.setSelected(false);
+	    	rb2.setSelected(false);
+	    	textField.setText("");
+	    	textField_1.setText("");
+	    	textField_2.setText("");
+	    	comboBox.removeAllItems();
+	    	 for (Comp c : temp) 
+	   		  comboBox.addItem(c.toString());
 	    }
 		
 	}
