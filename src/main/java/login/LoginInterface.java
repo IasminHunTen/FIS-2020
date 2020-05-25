@@ -11,11 +11,14 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import MainMenu.MainPage;
+import Search.Site;
 import register.Admin;
 import register.Client;
 import register.RegisterInterface;
 import register.User; // TO DO sterge cand inlocuiesti cu UserList
 import register.UserManager;
+import welcomePage.WelcomePage;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -29,6 +32,8 @@ public class LoginInterface extends JFrame implements ActionListener {
 	private JPasswordField passwordField;
 	private JButton loginButton;
 	private JLabel isFieldEmpty;
+	private JButton backButton;
+	private JButton registerButton;
 	
 	public static void main(String[] args) {
 		
@@ -79,14 +84,24 @@ public class LoginInterface extends JFrame implements ActionListener {
 		passwordField.setBounds(197, 157, 175, 20);
 		contentPane.add(passwordField);
 		
+		isFieldEmpty = new JLabel("");
+		isFieldEmpty.setBounds(114, 231, 258, 14);
+		contentPane.add(isFieldEmpty);
+		
 		loginButton = new JButton("Log in");
 		loginButton.addActionListener(this);
 		loginButton.setBounds(10, 297, 89, 23);
 		contentPane.add(loginButton);
 		
-		isFieldEmpty = new JLabel("");
-		isFieldEmpty.setBounds(114, 231, 258, 14);
-		contentPane.add(isFieldEmpty);
+		backButton = new JButton("Back");
+		backButton.addActionListener(this);
+		backButton.setBounds(10, 341, 89, 23);
+		contentPane.add(backButton);
+		
+		registerButton = new JButton("Register");
+		registerButton.addActionListener(this);
+		registerButton.setBounds(438, 341, 89, 23);
+		contentPane.add(registerButton);
 		
 	}
 
@@ -106,6 +121,7 @@ public class LoginInterface extends JFrame implements ActionListener {
 						if(u instanceof Client) {
 							this.setVisible(false);
 				            this.dispose();
+				            new Site((Client)u).setVisible(true);
 						}
 						else if(u instanceof Admin) {
 							this.setVisible(false);
@@ -116,6 +132,16 @@ public class LoginInterface extends JFrame implements ActionListener {
 				} catch (Exception e1) {
 					isFieldEmpty.setText("Username or password is incorect");
 				}
+		}
+		if(e.getSource()==registerButton) {
+			this.setVisible(false);
+            this.dispose();
+            new RegisterInterface().setVisible(true);
+		}
+		if(e.getSource()==backButton) {
+			this.setVisible(false);
+            this.dispose();
+            new WelcomePage().setVisible(true);
 		}
 		
 	}
