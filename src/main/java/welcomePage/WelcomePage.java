@@ -1,9 +1,14 @@
+package welcomePage;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import login.LoginInterface;
+import register.RegisterInterface;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -12,10 +17,12 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 
-public class WelcomePage extends JFrame {
+public class WelcomePage extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
 
+	private JButton loginButton;
+	private JButton registerButton;
 	/**
 	 * Launch the application.
 	 */
@@ -31,7 +38,7 @@ public class WelcomePage extends JFrame {
 			}
 		});
 	}
-
+	
 	/**
 	 * Create the frame.
 	 */
@@ -44,24 +51,37 @@ public class WelcomePage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Register");
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnNewButton.setBounds(53, 191, 89, 23);
-		contentPane.add(btnNewButton);
+		registerButton = new JButton("Register");
+		registerButton.setFont(new Font("Tahoma", Font.BOLD, 14));
+		registerButton.addActionListener(this);
+		registerButton.setBounds(53, 191, 89, 23);
+		contentPane.add(registerButton);
 		
-		JButton btnNewButton_1 = new JButton("Log In");
-		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnNewButton_1.setBounds(283, 191, 89, 23);
-		contentPane.add(btnNewButton_1);
+		loginButton = new JButton("Log In");
+		loginButton.addActionListener(this);
+		loginButton.setFont(new Font("Tahoma", Font.BOLD, 14));
+		loginButton.setBounds(283, 191, 89, 23);
+		contentPane.add(loginButton);
 		
 		JLabel lblNewLabel = new JLabel("Welcome");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 27));
 		lblNewLabel.setBounds(-16, 32, 424, 115);
 		contentPane.add(lblNewLabel);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==loginButton) {
+			this.setVisible(false);
+            this.dispose();
+            new LoginInterface().setVisible(true);
+		}
+		if(e.getSource()==registerButton) {
+			this.setVisible(false);
+            this.dispose();
+            new RegisterInterface().setVisible(true);
+		}
+		
 	}
 }
