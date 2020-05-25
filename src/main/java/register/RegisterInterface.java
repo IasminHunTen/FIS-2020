@@ -1,7 +1,5 @@
 package register;
 
-import javax.swing.JFrame;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 
@@ -20,6 +18,7 @@ import com.jgoodies.forms.layout.RowSpec;
 import MainMenu.AddItem;
 import MainMenu.MainPage;
 
+
 import java.awt.GridLayout;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
@@ -34,19 +33,17 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import java.awt.Font;
-import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
-import javax.swing.Action;
-import javax.swing.JButton;
 import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 public class RegisterInterface extends JFrame implements ActionListener{
 	
@@ -152,7 +149,7 @@ public class RegisterInterface extends JFrame implements ActionListener{
 		
 	}
 	
-	@Override
+
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource()==registerButton)
 		{	
