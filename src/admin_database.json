@@ -1,12 +1,11 @@
 {
   "admins" : [ {
-    "name" : "name",
-    "salt" : "s2iEuKaooptXwLGwxBcmPQ=="
+    "name" : "123",
+    "password" : "cc90f1c64ffb6757ee179b2c3d217f6d258bfdf0",
+    "salt" : "nPbq6GXZR+mOSj134y+3YA=="
   }, {
-    "name" : "roger",
-    "salt" : "2IFGUyLiR7HWLHsfARD5pg=="
-  }, {
-    "name" : "guy",
-    "salt" : "CCyyvk1JEvyZT4AFwacIeg=="
+    "name" : "1234",
+    "password" : "dbb676d05333c1bd2b9dadff3c3573ec1c4df278",
+    "salt" : "cRhkkookG2XwD+W5eAzzEg=="
   } ]
 }

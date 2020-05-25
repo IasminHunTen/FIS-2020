@@ -51,12 +51,12 @@ public class UserManager {
 	protected ClientList readClients() {
 		 ClientList cl = new ClientList();
 		 File f=new File("client_database.json");
-		 if(!f.exists() || f.length()==0)
+		 if(!f.exists()|| f.length()==0)
 			 cl=new ClientList();
 		 try {
-			cl=omap.readerFor(ClientList.class).readValue(new File("client_database.json"));
+			if(f.length()!=0)
+				cl=omap.readerFor(ClientList.class).readValue(new File("client_database.json"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		 
@@ -72,7 +72,6 @@ public class UserManager {
 			 try {
 				 ad= omap.readerFor(AdminList.class).readValue(new File("admin_database.json"));
 		  } catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			}
 	    }
@@ -117,19 +116,27 @@ public class UserManager {
 		throw new Exception("User does not exist");
 	}
 	
-	public boolean checkPassword(String username, String password) {
+	public User getUser(String username) throws Exception{ //nu trebuia sa separ bazele de date, o sa schimb mai tarziu
 		try {
-			Client c=this.getClient(username);
+			User u= this.getClient(username);
+			return u;
+		} catch (Exception e) {
+			User u= this.getAdmin(username);
+			return u;
+		}
+	}
+	
+	public boolean checkPassword(String username, String password) throws Exception {
+		Client c;
+		try {
+			c = this.getClient(username);
 			if(c.checkPassword(password))
 				return true;
+		} catch (Exception e) {
 			Admin a=this.getAdmin(username);
 			if(a.checkPassword(password))
 				return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;// nu sunt sigur de asta, "Username or password is incorect"
 		}
-		
 		return false;
 	}
 	
