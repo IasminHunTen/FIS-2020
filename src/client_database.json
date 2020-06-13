@@ -1,28 +1,8 @@
 {
   "clients" : [ {
-    "playList" : "asdf - queue",
-    "name" : "asdf",
-    "password" : "40471c3d5e7580b4bb72070a5342d05c975c97ce",
-    "salt" : "/JkT1dVNOcGMQe9C0IvdBg=="
-  }, {
-    "playList" : "1 - queue",
-    "name" : "1",
-    "password" : "a8e6bdfb2dbc07e6fff35e5705a876a807474355",
-    "salt" : "NQa424j6GYIy64aI/eBgAQ=="
-  }, {
-    "playList" : "asdf12 - queue",
-    "name" : "asdf12",
-    "password" : "c2138ff9a9e61737f91bad115e68e9525b67eed8",
-    "salt" : "F5Xv5oFan5KrS5jNH6nZiQ=="
-  }, {
-    "playList" : "donw - queue",
-    "name" : "donw",
-    "password" : "ddea305ba2e78236b284bd63ba4475293d2db79b",
-    "salt" : "u4fJGWxLLNrLEE2c9WwKyQ=="
-  }, {
-    "playList" : "r - queue",
-    "name" : "r",
-    "password" : "ff66a37211c5613b1693fde57300074624d0c0d9",
-    "salt" : "LmIhO1ClLnv04ntvCSGCZw=="
+    "playList" : "safd - queue",
+    "name" : "safd",
+    "password" : "6494e8e8721fa6eedfd39a26fe11ad1dc58cdb62",
+    "salt" : "AKaFMjAPcEFXF6WYfU/9wQ=="
   } ]
 }
