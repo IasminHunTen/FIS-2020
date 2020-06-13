@@ -29,4 +29,9 @@ public void addItem (Item it) {
 	   items.add(it);
 }
 
+public void removeItem (Item it) {
+	if(items.contains(it))
+		items.remove(it);
+}
+
 }

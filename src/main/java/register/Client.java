@@ -4,8 +4,16 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 
-public class Client extends User {
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+import MainMenu.Item;
+import MainMenu.ItemList;
+
+public class Client extends User {
+	
+	private ObjectMapper omap;
 	private String PlayList;
 	
 	public Client() {
@@ -17,6 +25,8 @@ public class Client extends User {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		this.omap=new ObjectMapper();
 	}
 	
 	public Client (String Name, String Password) {
@@ -43,5 +53,67 @@ public class Client extends User {
 		return "Client [PlayList=" + PlayList + ", Name=" + Name + ", Password=" + Password + ", Salt="
 				+ Arrays.toString(Salt) + "]";
 	}
+	
+	public void addItem(Item it) {
+		ItemList iList = null;
+		File f=new File("Queue Database/"+PlayList+".json");
+		if(!f.exists() || f.length()==0)
+			 iList= new ItemList();
+		try {
+			if(f.length()!=0)
+				iList=omap.readerFor(ItemList.class).readValue(new File("Queue Database/"+PlayList+".json"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		iList.addItem(it);
+		
+		try {
+			omap.writerWithDefaultPrettyPrinter().writeValue(new File("Queue Database/"+PlayList+".json"), iList);
+		} catch (JsonGenerationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void removeItem(Item it) {
+		ItemList iList = null;
+		File f=new File("Queue Database/"+PlayList+".json");
+		
+		//reads playlist
+		if(!f.exists() || f.length()==0)
+			 iList= new ItemList();
+		try {
+			if(f.length()!=0)
+				iList=omap.readerFor(ItemList.class).readValue(new File("Queue Database/"+PlayList+".json"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		iList.removeItem(it);
+		
+		//writes playlist
+		try {
+			omap.writerWithDefaultPrettyPrinter().writeValue(new File("Queue Database/"+PlayList+".json"), iList);
+		} catch (JsonGenerationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+	}
+	
+	
 
 }

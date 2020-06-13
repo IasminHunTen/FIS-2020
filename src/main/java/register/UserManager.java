@@ -49,7 +49,7 @@ public class UserManager {
 	}
 	
 	protected ClientList readClients() {
-		 ClientList cl = new ClientList();
+		 ClientList cl = null;
 		 File f=new File("client_database.json");
 		 if(!f.exists()|| f.length()==0)
 			 cl=new ClientList();
