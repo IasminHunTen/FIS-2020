@@ -140,7 +140,7 @@ public class UserManager {
 		return false;
 	}
 	
-	public ArrayList<Item> getPlayList(String username) throws Exception{
+	public String getPlayList(String username) throws Exception{
 		Client u=this.getClient(username);
 		return u.getPlayList();
 	}

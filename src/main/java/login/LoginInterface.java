@@ -106,6 +106,7 @@ public class LoginInterface extends JFrame implements ActionListener {
 						if(u instanceof Client) {
 							this.setVisible(false);
 				            this.dispose();
+				            // TO DO new Search().setVisible(true);
 						}
 						else if(u instanceof Admin) {
 							this.setVisible(false);
