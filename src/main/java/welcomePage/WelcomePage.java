@@ -70,7 +70,7 @@ public class WelcomePage extends JFrame implements ActionListener{
 		contentPane.add(lblNewLabel);
 	}
 
-	@Override
+
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==loginButton) {
 			this.setVisible(false);
