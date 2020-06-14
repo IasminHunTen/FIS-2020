@@ -37,15 +37,18 @@ public class EditItem extends JFrame implements ActionListener {
 	private JButton btnUndo;
 	private JButton button_3;
 	private JButton button_2;
-	private JComboBox jcb1;
+	private JComboBox<String> jcb1;
 	private JButton btnRemove;
 	private JButton btnNewButton_1;
-	private JComboBox jcb;
+	private JComboBox<String> jcb;
 	private JButton button_1;
 	private JButton btnNewButton;
 	private JButton button;
+	private JLabel lblNewLabel;
 	private ItemList list;
 	private DataMeneger dm; 
+	private ArrayList<String> act=new ArrayList<String>();
+	private ArrayList<Integer> sez=new ArrayList<Integer>();
 	private Item it;
 	private static int idx;
 
@@ -72,8 +75,9 @@ public class EditItem extends JFrame implements ActionListener {
 		dm=new DataMeneger();
 		list=dm.readItems();
 	
-		this.idx=idx;
+		EditItem.idx=idx;
 		it=list.getItems().get(idx);
+		act=(ArrayList<String>) it.getActors().clone();
 	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -146,7 +150,7 @@ public class EditItem extends JFrame implements ActionListener {
 		lblActors.setBounds(10, 162, 67, 14);
 		contentPane.add(lblActors);
 		
-	    jcb = new JComboBox();
+	    jcb = new JComboBox<String>();
 		jcb.setBounds(83, 162, 110, 20);
 		jcb.setEditable(true);
 		jcb.addActionListener(this);
@@ -166,17 +170,18 @@ public class EditItem extends JFrame implements ActionListener {
 		btnRemove.setBounds(0, 226, 85, 23);
 		contentPane.add(btnRemove);
 		
-		JLabel lblNewLabel = new JLabel("season :");
+	    lblNewLabel = new JLabel("season :");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel.setBounds(224, 164, 66, 14);
 		contentPane.add(lblNewLabel);
 		
-	    jcb1 = new JComboBox();
+	    jcb1 = new JComboBox<String>();
 		jcb1.setBounds(291, 162, 28, 20);
 		jcb1.setEditable(true);
 		jcb1.addActionListener(this);
 		if(it instanceof Series) {
 			Series s=(Series)it;
+			sez = (ArrayList<Integer>) s.getSeasons().clone();
 		    for(int i=0;i<s.getSeasons().size();i++)
 		      jcb1.addItem(String.valueOf(s.getSeasons().get(i)));
 		}
@@ -195,6 +200,7 @@ public class EditItem extends JFrame implements ActionListener {
 		contentPane.add(button_3);
 		
 		if(it instanceof Movie) {
+			lblNewLabel.setVisible(false);
 			jcb1.setVisible(false);
 			button_2.setVisible(false);
 			button_3.setVisible(false);
@@ -219,13 +225,15 @@ public class EditItem extends JFrame implements ActionListener {
 		textField_1.setText(it.getGen());
 		textField_2.setText(it.getMainPlot());
 		jcb.removeAllItems();
-		for(int i=0;i<it.getActors().size();i++)
-			jcb.addItem(it.getActors().get(i));
+		act=(ArrayList<String>) it.getActors().clone();
+		for(int i=0;i<act.size();i++)
+			jcb.addItem(act.get(i));
 		if(it instanceof Series) {
-			jcb1.removeAll();
+			jcb1.removeAllItems();
 			Series s=(Series)it;
-		    for(int i=0;i<s.getSeasons().size();i++)
-		      jcb1.addItem(String.valueOf(s.getSeasons().get(i)));
+		    sez=(ArrayList<Integer>) s.getSeasons().clone();
+		    for(int i=0;i<sez.size();i++)
+		      jcb1.addItem(String.valueOf(sez.get(i)));
 		}
 		
 	}
@@ -233,8 +241,6 @@ public class EditItem extends JFrame implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		String aux;
-		ArrayList<String> act=new ArrayList<String>();
-		ArrayList<Integer> sez=new ArrayList<Integer>();
 		if(e.getSource()==btnNewButton) {
 			it.setTitle(textField.getText());
 		}
@@ -249,38 +255,30 @@ public class EditItem extends JFrame implements ActionListener {
 		if(e.getSource()==btnNewButton_1) {
 			aux=JOptionPane.showInputDialog("add new actor");
 			if(!aux.equals("")) {
-			act=it.getActors();
 			act.add(aux);
 			jcb.addItem(aux);
-			it.setActors(act);
 			}
 		}
 		
-		if(e.getSource()==btnRemove) {
-			act=it.getActors();
+		if(e.getSource()==btnRemove) {	
 			act.remove(jcb.getSelectedIndex());
 			jcb.removeItemAt(jcb.getSelectedIndex());
-			it.setActors(act);
 		}
 		
 		if (it instanceof Series) {
 			Series s=(Series)it;
 			
 			if(e.getSource()==button_2) {
-				sez = s.getSeasons();
 				aux=JOptionPane.showInputDialog("add the number of episode of the new season" );
 				if(!aux.equals("")) {
 				sez.add(Integer.parseInt(aux));
-				s.setSeasons(sez);
 				jcb1.addItem(aux);
 				}
 			}
 			
 			if(e.getSource()==button_3) {
-				sez=s.getSeasons();
 				jcb1.removeItemAt(jcb1.getSelectedIndex());
 				sez.remove(jcb1.getSelectedIndex());
-				s.setSeasons(sez);
 			}
 		}
 		
@@ -289,6 +287,11 @@ public class EditItem extends JFrame implements ActionListener {
 		}
 		
 		if(e.getSource()==btnAplly) {
+		    it.setActors(act);
+		    if(it instanceof Series) {
+		    	Series s=(Series)it;
+		    	s.setSeasons(sez);
+		    }
 			ArrayList<Item> temp=list.getItems();
 			temp.set(idx, it);
 			

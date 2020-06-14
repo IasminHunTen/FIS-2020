@@ -5,7 +5,7 @@
     "gen" : "Bigraphy",
     "year" : 2019,
     "mainPlot" : "American car designer Carroll Shelby and driver Ken Miles battle corporate interference and the laws of physics to build a revolutionary race car for Ford in order to defeat Ferrari at the 24 Hours of Le Mans in 1966.",
-    "actors" : [ "Taylor Posey", "Holland Roden", "Crystal Reed", "Dylan O'Brien" ]
+    "actors" : [ "Taylor Posey", "Holland Roden", "Crystal Reed", "Dylan O'Brien", "Constaantin Iasmin" ]
   }, {
     "type" : "series",
     "title" : "Westworld",
@@ -22,5 +22,13 @@
     "mainPlot" : "An average high school student and his best friend get caught up in some trouble causing him to receive a werewolf bite. As a result they find themselves in the middle of all sorts of dramas in Beacon Hills.",
     "actors" : [ "Taylor Posey", "Crystal Reed", "Dylan O'Brien" ],
     "seasons" : [ 10, 12, 24, 12, 20, 40 ]
+  }, {
+    "type" : "series",
+    "title" : "aa",
+    "gen" : "bb",
+    "year" : 200,
+    "mainPlot" : "cc",
+    "actors" : [ "ee", "dd", "ff" ],
+    "seasons" : [ 1, 2, 3 ]
   } ]
 }
