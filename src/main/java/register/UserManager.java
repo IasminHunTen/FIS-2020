@@ -49,7 +49,7 @@ public class UserManager {
 	}
 	
 	protected ClientList readClients() {
-		 ClientList cl = new ClientList();
+		 ClientList cl = null;
 		 File f=new File("client_database.json");
 		 if(!f.exists()|| f.length()==0)
 			 cl=new ClientList();
@@ -116,7 +116,7 @@ public class UserManager {
 		throw new Exception("User does not exist");
 	}
 	
-	public User getUser(String username) throws Exception{ //nu trebuia sa separ bazele de date, o sa schimb mai tarziu
+	public User getUser(String username) throws Exception{ //nu trebuia sa separ bazele de date
 		try {
 			User u= this.getClient(username);
 			return u;
@@ -140,7 +140,7 @@ public class UserManager {
 		return false;
 	}
 	
-	public ArrayList<Item> getPlayList(String username) throws Exception{
+	public String getPlayList(String username) throws Exception{
 		Client u=this.getClient(username);
 		return u.getPlayList();
 	}
