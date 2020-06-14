@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import MainMenu.Item;
 import MainMenu.ItemList;
 import MainMenu.Movie;
+import PlayTime.Main;
 import Search.Site;
 import register.Client;
 import register.RegisterInterface;
@@ -45,7 +46,11 @@ public class QueueInterface extends JFrame  implements ActionListener{
 			ArrayList<String> a=new ArrayList<String>();
 			a.add("fas");
 			Item it=new Movie("a","a",4,"x",a);
+			Item it2=new Movie("as","a",4,"x",a);
+			Item it3=new Movie("as","ad",2,"x",a);
 			c.addItem(it);
+			c.addItem(it2);
+			c.addItem(it3);
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
@@ -106,6 +111,7 @@ public class QueueInterface extends JFrame  implements ActionListener{
 		}
 		ArrayList<Item> iList=il.getItems();
 		for(int i=0;i<iList.size();i++) {
+			// in lista pune doar titlul, unde ar trebui sa fie mai multa informatie, si un hyperlink catre adresa item-ului
 			comboBoxQueue.addItem(iList.get(i).getTitle());
 		}
 	}
@@ -118,20 +124,28 @@ public class QueueInterface extends JFrame  implements ActionListener{
             new Site(cl).setVisible(true);
 		}
 		else if (e.getSource()==selectButton) {
-			//a
+			//Cauta filmul sau serialul dupa index, avand in vedere ca in combaBox item-urile din ArrayList sunt adaugate in ordine
+			//nu cred ca e o solutie inteligenta pe termen lung, dar functioneaza demonstrativ
+			//probabil s-ar fi facut mult mai bine diferit, mai ales daca lucram cu baze de date
+			int itemIndex=comboBoxQueue.getSelectedIndex();
+			if(itemIndex!=0) {
+				ArrayList<Item> iList=il.getItems();
+				this.setVisible(false);
+				this.dispose();
+				new Main(iList.get(itemIndex-1),cl).setVisible(true);
+			}
 		}
 		else if (e.getSource()==deleteButton) {
-			String itemName=comboBoxQueue.getSelectedItem().toString();
-			ArrayList<Item> iList=il.getItems();
-			//Cauta filmul sau serialul dupa titlu, in loc de un id cum ar fi normal,
-			//
-			for(int i=0;i<iList.size();i++)
-				if(iList.get(i).getTitle().equals(itemName))
-					cl.removeItem(iList.get(i));
-			//redeschide interfata, cu item-ul eliminat din lista
-			this.setVisible(false);
-            this.dispose();
-            new QueueInterface(cl).setVisible(true);
+			int itemIndex=comboBoxQueue.getSelectedIndex();
+			if(itemIndex!=0) {
+				ArrayList<Item> iList=il.getItems();
+				//Elimina din playlist-ul clientului item-ul gasit prin index
+				cl.removeItem(iList.get(itemIndex-1));
+				//redeschide interfata, cu item-ul eliminat din lista
+				this.setVisible(false);
+				this.dispose();
+				new QueueInterface(cl).setVisible(true);
+			}
 		}
 	}
 }
