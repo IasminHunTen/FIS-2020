@@ -40,6 +40,7 @@ public class Client extends User {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		this.omap=new ObjectMapper();
 	}
 	
 	public String getPlayList() {

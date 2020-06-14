@@ -106,7 +106,7 @@ public class QueueInterface extends JFrame  implements ActionListener{
 		}
 		ArrayList<Item> iList=il.getItems();
 		for(int i=0;i<iList.size();i++) {
-			comboBoxQueue.addItem(iList.get(i).toString());
+			comboBoxQueue.addItem(iList.get(i).getTitle());
 		}
 	}
 
@@ -118,10 +118,20 @@ public class QueueInterface extends JFrame  implements ActionListener{
             new Site(cl).setVisible(true);
 		}
 		else if (e.getSource()==selectButton) {
-			
+			//a
 		}
 		else if (e.getSource()==deleteButton) {
-			
+			String itemName=comboBoxQueue.getSelectedItem().toString();
+			ArrayList<Item> iList=il.getItems();
+			//Cauta filmul sau serialul dupa titlu, in loc de un id cum ar fi normal,
+			//
+			for(int i=0;i<iList.size();i++)
+				if(iList.get(i).getTitle().equals(itemName))
+					cl.removeItem(iList.get(i));
+			//redeschide interfata, cu item-ul eliminat din lista
+			this.setVisible(false);
+            this.dispose();
+            new QueueInterface(cl).setVisible(true);
 		}
 	}
 }
