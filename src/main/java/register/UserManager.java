@@ -116,7 +116,7 @@ public class UserManager {
 		throw new Exception("User does not exist");
 	}
 	
-	public User getUser(String username) throws Exception{ //nu trebuia sa separ bazele de date, o sa schimb mai tarziu
+	public User getUser(String username) throws Exception{ //nu trebuia sa separ bazele de date
 		try {
 			User u= this.getClient(username);
 			return u;

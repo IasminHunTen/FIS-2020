@@ -2,24 +2,66 @@ package queue;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import MainMenu.Item;
+import MainMenu.ItemList;
+import MainMenu.Movie;
+import Search.Site;
+import register.Client;
+import register.RegisterInterface;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.EventQueue;
 
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import java.awt.Font;
 
 public class QueueInterface extends JFrame  implements ActionListener{
 
 	private JPanel contentPane;
-
+	private JButton backButton;
+	private JButton selectButton;
+	private JButton deleteButton;
+	private JComboBox<String> comboBoxQueue;
+	private Client cl;
+	private ItemList il;
+	private ObjectMapper omap;
 	
-	public QueueInterface() {
+	public static void main(String[] args) {
+			Client c=new Client("user","hass");
+			ArrayList<String> a=new ArrayList<String>();
+			a.add("fas");
+			Item it=new Movie("a","a",4,"x",a);
+			c.addItem(it);
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						QueueInterface frame = new QueueInterface(c);
+						frame.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+	}
+	
+	public QueueInterface(Client cl) {
+		
+		this.cl=cl;
+		omap=new ObjectMapper();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 590, 438);
@@ -29,35 +71,57 @@ public class QueueInterface extends JFrame  implements ActionListener{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JList list = new JList();
-		list.setBounds(106, 54, 356, 23);
-		getContentPane().add(list);
-		
 		JLabel lblNewLabel = new JLabel("Queue");
-		lblNewLabel.setBounds(254, 29, 38, 14);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 17));
+		lblNewLabel.setBounds(254, 23, 62, 29);
 		getContentPane().add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("Back");
-		btnNewButton.setBounds(27, 308, 89, 23);
-		contentPane.add(btnNewButton);
+		backButton = new JButton("Back");
+		backButton.addActionListener(this);
+		backButton.setBounds(27, 308, 89, 23);
+		contentPane.add(backButton);
 		
-		JButton btnNewButton_1 = new JButton("Select");
-		btnNewButton_1.setBounds(440, 308, 89, 23);
-		contentPane.add(btnNewButton_1);
+		selectButton = new JButton("Select");
+		selectButton.addActionListener(this);
+		selectButton.setBounds(440, 308, 89, 23);
+		contentPane.add(selectButton);
 		
-		JButton btnNewButton_2 = new JButton("Delete");
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnNewButton_2.setBounds(440, 254, 89, 23);
-		contentPane.add(btnNewButton_2);
+		deleteButton = new JButton("Delete");
+		deleteButton.addActionListener(this);
+		deleteButton.setBounds(440, 254, 89, 23);
+		contentPane.add(deleteButton);
 		
+		comboBoxQueue = new JComboBox<String>();
+		comboBoxQueue.setBounds(27, 63, 404, 20);
+		contentPane.add(comboBoxQueue);
+		comboBoxQueue.addItem("");
+		File f=new File("Queue Database/"+cl.getPlayList()+".json");
+		if(!f.exists() || f.length()==0)
+			 il= new ItemList();
+		try {
+			if(f.length()!=0)
+				il=omap.readerFor(ItemList.class).readValue(f);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		ArrayList<Item> iList=il.getItems();
+		for(int i=0;i<iList.size();i++) {
+			comboBoxQueue.addItem(iList.get(i).toString());
+		}
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==backButton) {
+			this.setVisible(false);
+            this.dispose();
+            new Site(cl).setVisible(true);
+		}
+		else if (e.getSource()==selectButton) {
+			
+		}
+		else if (e.getSource()==deleteButton) {
+			
+		}
 	}
 }

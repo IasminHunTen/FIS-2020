@@ -2,6 +2,7 @@ package register;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
@@ -10,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import MainMenu.Item;
 import MainMenu.ItemList;
+import MainMenu.Movie;
 
 public class Client extends User {
 	
@@ -61,15 +63,15 @@ public class Client extends User {
 			 iList= new ItemList();
 		try {
 			if(f.length()!=0)
-				iList=omap.readerFor(ItemList.class).readValue(new File("Queue Database/"+PlayList+".json"));
+				iList=omap.readerFor(ItemList.class).readValue(f);//nu gaseste directorul cred
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		iList.addItem(it);
-		
+
 		try {
-			omap.writerWithDefaultPrettyPrinter().writeValue(new File("Queue Database/"+PlayList+".json"), iList);
+			omap.writerWithDefaultPrettyPrinter().writeValue(f, iList);//nu gaseste directorul cred
 		} catch (JsonGenerationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -78,6 +80,8 @@ public class Client extends User {
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
 		
@@ -92,7 +96,7 @@ public class Client extends User {
 			 iList= new ItemList();
 		try {
 			if(f.length()!=0)
-				iList=omap.readerFor(ItemList.class).readValue(new File("Queue Database/"+PlayList+".json"));
+				iList=omap.readerFor(ItemList.class).readValue(f);//nu gaseste directorul cred
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -101,7 +105,7 @@ public class Client extends User {
 		
 		//writes playlist
 		try {
-			omap.writerWithDefaultPrettyPrinter().writeValue(new File("Queue Database/"+PlayList+".json"), iList);
+			omap.writerWithDefaultPrettyPrinter().writeValue(f, iList);//nu gaseste directorul cred
 		} catch (JsonGenerationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
