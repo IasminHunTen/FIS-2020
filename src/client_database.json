@@ -4,5 +4,10 @@
     "name" : "safd",
     "password" : "6494e8e8721fa6eedfd39a26fe11ad1dc58cdb62",
     "salt" : "AKaFMjAPcEFXF6WYfU/9wQ=="
+  }, {
+    "playList" : "user - queue",
+    "name" : "user",
+    "password" : "87a98d4dd924ad6ffa8c5274fc4cad7d8f54a5ef",
+    "salt" : "67UtR6j/bj9vgAzvlcy7Jw=="
   } ]
 }

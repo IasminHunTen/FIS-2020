@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import MainMenu.MainPage;
+import Search.Site;
 import register.Admin;
 import register.Client;
 import register.RegisterInterface;
@@ -106,7 +107,7 @@ public class LoginInterface extends JFrame implements ActionListener {
 						if(u instanceof Client) {
 							this.setVisible(false);
 				            this.dispose();
-				            // TO DO new Search().setVisible(true);
+				            new Site((Client)u).setVisible(true);
 						}
 						else if(u instanceof Admin) {
 							this.setVisible(false);

@@ -42,6 +42,8 @@ public class QueueInterface extends JFrame  implements ActionListener{
 	private ObjectMapper omap;
 	
 	public static void main(String[] args) {
+		//	doar un test, user hass nu e adaugat in baza de date a clientilor
+		/*
 			Client c=new Client("user","hass");
 			ArrayList<String> a=new ArrayList<String>();
 			a.add("fas");
@@ -60,7 +62,7 @@ public class QueueInterface extends JFrame  implements ActionListener{
 						e.printStackTrace();
 					}
 				}
-			});
+			});*/
 	}
 	
 	public QueueInterface(Client cl) {

@@ -33,6 +33,7 @@ public class Client extends User {
 	
 	public Client (String Name, String Password) {
 		super(Name,Password);
+		//poate trebuia adaugat in baza de date prin constructor
 		PlayList = getName() + " - queue";
 		try {
 			new File("Queue Database/"+PlayList+".json").createNewFile();// se creaza automat fisier null - queue
