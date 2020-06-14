@@ -118,7 +118,6 @@ public class QueueInterface extends JFrame  implements ActionListener{
 		}
 	}
 
-	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==backButton) {
 			this.setVisible(false);

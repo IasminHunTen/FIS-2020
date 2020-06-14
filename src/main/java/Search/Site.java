@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import MainMenu.*;
 import PlayTime.Main;
+import queue.QueueInterface;
 import register.Client;
 
 import javax.swing.JFrame;
@@ -353,6 +354,11 @@ public class Site extends JFrame implements ActionListener,ItemListener {
 	    	comboBox.removeAllItems();
 	    	 for (Comp c : temp) 
 	   		  comboBox.addItem(c.toString());
+	    }
+	    if(e.getSource()==acces) {
+	       new QueueInterface(cl).setVisible(true);
+	       this.setVisible(false);
+	       this.dispose();
 	    }
 		
 	}
