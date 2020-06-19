@@ -8,13 +8,6 @@
     "actors" : [ ]
   }, {
     "type" : "movie",
-    "title" : "fight club",
-    "gen" : "thriller",
-    "year" : 1999,
-    "mainPlot" : "You don't talk about it",
-    "actors" : [ "Nathan" ]
-  }, {
-    "type" : "movie",
     "title" : "firefly",
     "gen" : "sci-fi",
     "year" : 2007,

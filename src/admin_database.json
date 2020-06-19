@@ -3,5 +3,13 @@
     "name" : "name",
     "password" : "3554afb015840e81ed5308766f116a661d26a606",
     "salt" : "xMQoFxddmoal0S2+XczcyA=="
+  }, {
+    "name" : "dac",
+    "password" : "8d9ba3b01b58410deb16ba294550c542d8fbb5d3",
+    "salt" : "wxSuwleHSsr6f+kl9tJx0g=="
+  }, {
+    "name" : "adm",
+    "password" : "15d5f7c7bbccedf317db6d6b659fc88f8024555e",
+    "salt" : "DvQgYgNVi4Hi1fyBANZ/3A=="
   } ]
 }

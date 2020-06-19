@@ -9,5 +9,10 @@
     "name" : "user",
     "password" : "87a98d4dd924ad6ffa8c5274fc4cad7d8f54a5ef",
     "salt" : "67UtR6j/bj9vgAzvlcy7Jw=="
+  }, {
+    "playList" : "vlad - queue",
+    "name" : "vlad",
+    "password" : "81a287b1ef9a23ce972ef120e1273a08f6df188a",
+    "salt" : "bGneF85Ahq1UUBYzx9OZFw=="
   } ]
 }
