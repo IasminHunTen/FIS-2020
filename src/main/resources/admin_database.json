@@ -1,0 +1,11 @@
+{
+  "admins" : [ {
+    "name" : "asdf",
+    "password" : "a20026b2d086903be29ef156290821ac2b630869",
+    "salt" : "ZstYkrzOoOED4+LThBXcoQ=="
+  }, {
+    "name" : "name",
+    "password" : "2f70de371b1390b64c580ba8ff98043a5891dca8",
+    "salt" : "THZGSTdaOedlCasIURVmaQ=="
+  } ]
+}

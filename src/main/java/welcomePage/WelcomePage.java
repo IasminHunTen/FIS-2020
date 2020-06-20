@@ -6,11 +6,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import org.apache.commons.io.FileUtils;
+
 import login.LoginInterface;
 import register.RegisterInterface;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.JLabel;
@@ -26,15 +31,34 @@ public class WelcomePage extends JFrame implements ActionListener{
 	/**
 	 * Launch the application.
 	 */
+	private static void copyFile(File src, File dest) {
+		try {
+			FileUtils.copyFileToDirectory(src,dest);
+		}catch(IOException e) {
+	    	e.printStackTrace();
+		}
+	}
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					File from_client =new File("\\client_database.json").getAbsoluteFile();
+					File from_admin =new File("\\admin_database.json").getAbsoluteFile();
+					File from_item =new File("\\database.json").getAbsoluteFile();
+					File from_queue =new File("\\Queue Database.dir").getAbsoluteFile();
+					File dest = new File("\\target");
+					
+					copyFile(from_client,dest);
+					copyFile(from_admin,dest);
+					copyFile(from_item,dest);
+					copyFile(from_queue,dest);
+					
 					WelcomePage frame = new WelcomePage();
 					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+				 } catch (Exception e) {
+			            e.printStackTrace();
+			        }
 			}
 		});
 	}

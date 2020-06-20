@@ -1,0 +1,11 @@
+{
+  "admins" : [ {
+    "name" : "x",
+    "salt" : "7K0s0XrSoWZnv36lm+P1Tw==",
+    "password" : "1e0fe5e6ffcc507c600a270c89870df901e205dc"
+  }, {
+    "name" : "z",
+    "salt" : "9MKn38h+hzptxoaSDG60PA==",
+    "password" : "6ac21c0e79a8db8880e2445cfd93e38901a3d233"
+  } ]
+}

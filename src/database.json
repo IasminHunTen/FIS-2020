@@ -1,0 +1,10 @@
+{
+  "items" : [ {
+    "type" : "movie",
+    "title" : "asdf",
+    "gen" : "asdf",
+    "year" : 1223,
+    "mainPlot" : "asdf",
+    "actors" : [ ]
+  } ]
+}

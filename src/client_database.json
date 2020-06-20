@@ -1,0 +1,13 @@
+{
+  "clients" : [ {
+    "playList" : "e - queue",
+    "name" : "e",
+    "password" : "5519c9360ddc5852d9605181dde6bcf0413a1cab",
+    "salt" : "3hw0c/UUUVJNP61XbfucMw=="
+  }, {
+    "playList" : "a - queue",
+    "name" : "a",
+    "password" : "2647df63dc0b7f76b817e9a4eb721941a6e705d5",
+    "salt" : "y7iLqWpQUn18yAcLhW16lQ=="
+  } ]
+}
