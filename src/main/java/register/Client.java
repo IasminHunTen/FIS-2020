@@ -20,23 +20,24 @@ public class Client extends User {
 	
 	public Client() {
 		super();
-		PlayList = getName() + " - queue";
-		try {
-			new File("Queue Database/"+PlayList+".json").createNewFile();
-		} catch (IOException e) {
+		//PlayList = getName() + " - queue";
+		//try {
+			//new File("Queue Database/"+PlayList+".json").createNewFile();
+		//} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		//	e.printStackTrace();
+		//}
 		
 		this.omap=new ObjectMapper();
 	}
 	
 	public Client (String Name, String Password) {
 		super(Name,Password);
-		//poate trebuia adaugat in baza de date prin constructor
+		//probabil trebuia adaugat in baza de date prin constructor
 		PlayList = getName() + " - queue";
+		new File("Queue Database").mkdir(); // daca nu exista, dar nu mai e timp
 		try {
-			new File("Queue Database/"+PlayList+".json").createNewFile();// se creaza automat fisier null - queue
+			new File("Queue Database/"+PlayList+".json").createNewFile();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
