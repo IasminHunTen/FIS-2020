@@ -46,7 +46,7 @@ public class WelcomePage extends JFrame implements ActionListener{
 					File from_client =new File("\\client_database.json").getAbsoluteFile();
 					File from_admin =new File("\\admin_database.json").getAbsoluteFile();
 					File from_item =new File("\\database.json").getAbsoluteFile();
-					File from_queue =new File("\\Queue Database.dir").getAbsoluteFile();
+					File from_queue =new File("\\Queue Database.dir").getAbsoluteFile(); //nu stiu cum sa rezolv, nu e timp
 					File dest = new File("\\target");
 					
 					copyFile(from_client,dest);
